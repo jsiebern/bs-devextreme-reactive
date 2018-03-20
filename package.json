@@ -1,6 +1,6 @@
 {
   "name": "@jsiebern/bs-devextreme-reactive",
-  "version": "0.0.2",
+  "version": "0.0.21",
   "description": "This library provides Reason bindings for devextreme-reactive.",
   "keywords": [
     "bucklescript",
@@ -14,8 +14,7 @@
   "license": "MIT",
   "main": "src/Grid.re",
   "scripts": {
-    "build": "npm link bs-platform; bsb -make-world",
-    "postinstall": "npm link bs-platform"
+    "build": "npm link bs-platform; bsb -make-world"
   },
   "devDependencies": {},
   "dependencies": {
