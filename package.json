@@ -1,6 +1,6 @@
 {
   "name": "@jsiebern/bs-devextreme-reactive",
-  "version": "1.1.0",
+  "version": "0.0.2",
   "description": "This library provides Reason bindings for devextreme-reactive.",
   "keywords": [
     "bucklescript",
@@ -24,6 +24,8 @@
     "@devexpress/dx-react-grid-bootstrap3": "^1.1.0",
     "@devexpress/dx-react-grid-bootstrap4": "^1.1.0",
     "@devexpress/dx-react-grid-material-ui": "^1.1.0",
+    "material-ui": "^1.0.0-beta.38",
+    "material-ui-icons": "^1.0.0-beta.36",
     "reason-react": "^0.3.1"
   }
 }
