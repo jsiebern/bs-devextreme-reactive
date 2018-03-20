@@ -1,5 +1,5 @@
 {
-    "name": "@jsiebern/devextreme-reactive",
+    "name": "@jsiebern/bs-devextreme-reactive",
     "namespace": true,
     "sources": "src",
     "package-specs": {

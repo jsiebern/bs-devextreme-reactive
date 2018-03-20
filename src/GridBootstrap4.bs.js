@@ -6,25 +6,7 @@ var Js_boolean = require("bs-platform/lib/js/js_boolean.js");
 var Js_mapperRt = require("bs-platform/lib/js/js_mapperRt.js");
 var ReasonReact = require("reason-react/src/ReasonReact.js");
 var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exceptions.js");
-var Grid = require("@devexpress/dx-react-grid-bootstrap4/Grid");
-var Table = require("@devexpress/dx-react-grid-bootstrap4/Table");
-var Toolbar = require("@devexpress/dx-react-grid-bootstrap4/Toolbar");
-var PagingPanel = require("@devexpress/dx-react-grid-bootstrap4/PagingPanel");
-var SearchPanel = require("@devexpress/dx-react-grid-bootstrap4/SearchPanel");
-var TableEditRow = require("@devexpress/dx-react-grid-bootstrap4/TableEditRow");
-var VirtualTable = require("@devexpress/dx-react-grid-bootstrap4/VirtualTable");
-var ColumnChooser = require("@devexpress/dx-react-grid-bootstrap4/ColumnChooser");
-var GroupingPanel = require("@devexpress/dx-react-grid-bootstrap4/GroupingPanel");
-var TableGroupRow = require("@devexpress/dx-react-grid-bootstrap4/TableGroupRow");
-var TableFilterRow = require("@devexpress/dx-react-grid-bootstrap4/TableFilterRow");
-var TableHeaderRow = require("@devexpress/dx-react-grid-bootstrap4/TableHeaderRow");
-var TableRowDetail = require("@devexpress/dx-react-grid-bootstrap4/TableRowDetail");
-var TableSelection = require("@devexpress/dx-react-grid-bootstrap4/TableSelection");
-var TableEditColumn = require("@devexpress/dx-react-grid-bootstrap4/TableEditColumn");
-var DragDropProvider = require("@devexpress/dx-react-grid-bootstrap4/DragDropProvider");
-var TableColumnResizing = require("@devexpress/dx-react-grid-bootstrap4/TableColumnResizing");
-var TableColumnReordering = require("@devexpress/dx-react-grid-bootstrap4/TableColumnReordering");
-var TableColumnVisibility = require("@devexpress/dx-react-grid-bootstrap4/TableColumnVisibility");
+var DxReactGridBootstrap4 = require("@devexpress/dx-react-grid-bootstrap4");
 
 function unwrapValue(param) {
   var variant = param[0];
@@ -96,10 +78,10 @@ function make(overlayComponent, containerComponent, itemComponent, toggleButtonC
   if (tmp$1) {
     tmp.messages = tmp$1[0];
   }
-  return ReasonReact.wrapJsForReason(ColumnChooser.default, tmp, children);
+  return ReasonReact.wrapJsForReason(DxReactGridBootstrap4.ColumnChooser, tmp, children);
 }
 
-var ColumnChooser$1 = /* module */[
+var ColumnChooser = /* module */[
   /* convertMessages */convertMessages,
   /* make */make
 ];
@@ -112,12 +94,12 @@ function make$1(containerComponent, columnComponent, children) {
   if (columnComponent) {
     tmp.columnComponent = columnComponent[0];
   }
-  return ReasonReact.wrapJsForReason(DragDropProvider.default, tmp, children);
+  return ReasonReact.wrapJsForReason(DxReactGridBootstrap4.DragDropProvider, tmp, children);
 }
 
-var DragDropProvider$1 = /* module */[/* make */make$1];
+var DragDropProvider = /* module */[/* make */make$1];
 
-function convertRjgb(madeObj) {
+function convertColumns(madeObj) {
   var returnObj = { };
   returnObj["name"] = madeObj["name"];
   returnObj["title"] = madeObj["title"];
@@ -127,8 +109,13 @@ function convertRjgb(madeObj) {
 
 function make$2(rows, getRowId, getCellValue, columns, rootComponent, children) {
   var tmp = { };
-  if (rows) {
-    tmp.rows = rows[0];
+  var tmp$1 = Js_option.map((function (v) {
+          return v.map((function (item) {
+                        return item;
+                      }));
+        }), rows);
+  if (tmp$1) {
+    tmp.rows = tmp$1[0];
   }
   if (getRowId) {
     tmp.getRowId = getRowId[0];
@@ -136,17 +123,20 @@ function make$2(rows, getRowId, getCellValue, columns, rootComponent, children) 
   if (getCellValue) {
     tmp.getCellValue = getCellValue[0];
   }
-  if (columns) {
-    tmp.columns = columns[0];
+  var tmp$2 = Js_option.map((function (v) {
+          return v.map(convertColumns);
+        }), columns);
+  if (tmp$2) {
+    tmp.columns = tmp$2[0];
   }
   if (rootComponent) {
     tmp.rootComponent = rootComponent[0];
   }
-  return ReasonReact.wrapJsForReason(Grid.default, tmp, children);
+  return ReasonReact.wrapJsForReason(DxReactGridBootstrap4.Grid, tmp, children);
 }
 
-var Grid$1 = /* module */[
-  /* convertRjgb */convertRjgb,
+var Grid = /* module */[
+  /* convertColumns */convertColumns,
   /* make */make$2
 ];
 
@@ -161,11 +151,11 @@ var jsMapperConstantArray = /* array */[
   ]
 ];
 
-function sortingDirection_rty5ToJs(param) {
+function sortingDirectionToJs(param) {
   return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray);
 }
 
-function sortingDirection_rty5FromJs(param) {
+function sortingDirectionFromJs(param) {
   return Js_mapperRt.revSearch(2, jsMapperConstantArray, param);
 }
 
@@ -180,11 +170,11 @@ var jsMapperConstantArray$1 = /* array */[
   ]
 ];
 
-function rqpw_r7xqToJs(param) {
+function rhf7ToJs(param) {
   return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$1);
 }
 
-function rqpw_r7xqFromJs(param) {
+function rhf7FromJs(param) {
   return Js_mapperRt.revSearch(2, jsMapperConstantArray$1, param);
 }
 
@@ -222,14 +212,14 @@ function make$3(showSortingControls, showGroupingControls, layoutComponent, cont
   if (tmp$3) {
     tmp.messages = tmp$3[0];
   }
-  return ReasonReact.wrapJsForReason(GroupingPanel.default, tmp, children);
+  return ReasonReact.wrapJsForReason(DxReactGridBootstrap4.GroupingPanel, tmp, children);
 }
 
-var GroupingPanel$1 = /* module */[
-  /* sortingDirection_rty5ToJs */sortingDirection_rty5ToJs,
-  /* sortingDirection_rty5FromJs */sortingDirection_rty5FromJs,
-  /* rqpw_r7xqToJs */rqpw_r7xqToJs,
-  /* rqpw_r7xqFromJs */rqpw_r7xqFromJs,
+var GroupingPanel = /* module */[
+  /* sortingDirectionToJs */sortingDirectionToJs,
+  /* sortingDirectionFromJs */sortingDirectionFromJs,
+  /* rhf7ToJs */rhf7ToJs,
+  /* rhf7FromJs */rhf7FromJs,
   /* convertMessages */convertMessages$1,
   /* make */make$3
 ];
@@ -257,10 +247,10 @@ function make$4(pageSizes, containerComponent, messages, children) {
   if (tmp$1) {
     tmp.messages = tmp$1[0];
   }
-  return ReasonReact.wrapJsForReason(PagingPanel.default, tmp, children);
+  return ReasonReact.wrapJsForReason(DxReactGridBootstrap4.PagingPanel, tmp, children);
 }
 
-var PagingPanel$1 = /* module */[
+var PagingPanel = /* module */[
   /* convertMessages */convertMessages$2,
   /* make */make$4
 ];
@@ -282,10 +272,10 @@ function make$5(inputComponent, messages, children) {
   if (tmp$1) {
     tmp.messages = tmp$1[0];
   }
-  return ReasonReact.wrapJsForReason(SearchPanel.default, tmp, children);
+  return ReasonReact.wrapJsForReason(DxReactGridBootstrap4.SearchPanel, tmp, children);
 }
 
-var SearchPanel$1 = /* module */[
+var SearchPanel = /* module */[
   /* convertMessages */convertMessages$3,
   /* make */make$5
 ];
@@ -310,42 +300,48 @@ function make$6(order, defaultOrder, onOrderChange, tableContainerComponent, row
   if (cellComponent) {
     tmp.cellComponent = cellComponent[0];
   }
-  return ReasonReact.wrapJsForReason(TableColumnReordering.default, tmp, children);
+  return ReasonReact.wrapJsForReason(DxReactGridBootstrap4.TableColumnReordering, tmp, children);
 }
 
-var TableColumnReordering$1 = /* module */[/* make */make$6];
+var TableColumnReordering = /* module */[/* make */make$6];
 
-function convertRprr(madeObj) {
+function convertDefaultColumnWidths(madeObj) {
   var returnObj = { };
   returnObj["columnName"] = madeObj["columnName"];
-  returnObj["width"] = madeObj["width"];
+  returnObj["width"] = unwrapValue(madeObj["width"]);
   return returnObj;
 }
 
-function convertRj6i(madeObj) {
+function convertColumnWidths(madeObj) {
   var returnObj = { };
   returnObj["columnName"] = madeObj["columnName"];
-  returnObj["width"] = madeObj["width"];
+  returnObj["width"] = unwrapValue(madeObj["width"]);
   return returnObj;
 }
 
 function make$7(defaultColumnWidths, columnWidths, onColumnWidthsChange, children) {
   var tmp = { };
-  if (defaultColumnWidths) {
-    tmp.defaultColumnWidths = defaultColumnWidths[0];
+  var tmp$1 = Js_option.map((function (v) {
+          return v.map(convertDefaultColumnWidths);
+        }), defaultColumnWidths);
+  if (tmp$1) {
+    tmp.defaultColumnWidths = tmp$1[0];
   }
-  if (columnWidths) {
-    tmp.columnWidths = columnWidths[0];
+  var tmp$2 = Js_option.map((function (v) {
+          return v.map(convertColumnWidths);
+        }), columnWidths);
+  if (tmp$2) {
+    tmp.columnWidths = tmp$2[0];
   }
   if (onColumnWidthsChange) {
     tmp.onColumnWidthsChange = onColumnWidthsChange[0];
   }
-  return ReasonReact.wrapJsForReason(TableColumnResizing.default, tmp, children);
+  return ReasonReact.wrapJsForReason(DxReactGridBootstrap4.TableColumnResizing, tmp, children);
 }
 
-var TableColumnResizing$1 = /* module */[
-  /* convertRprr */convertRprr,
-  /* convertRj6i */convertRj6i,
+var TableColumnResizing = /* module */[
+  /* convertDefaultColumnWidths */convertDefaultColumnWidths,
+  /* convertColumnWidths */convertColumnWidths,
   /* make */make$7
 ];
 
@@ -357,10 +353,10 @@ function convertMessages$4(madeObj) {
   return /* Some */[returnObj];
 }
 
-function convertRhhd(madeObj) {
+function convertColumnExtensions(madeObj) {
   var returnObj = { };
   returnObj["columnName"] = madeObj["columnName"];
-  returnObj["togglingEnabled"] = madeObj["togglingEnabled"];
+  returnObj["togglingEnabled"] = Js_boolean.to_js_boolean(madeObj["togglingEnabled"]);
   return returnObj;
 }
 
@@ -382,19 +378,22 @@ function make$8(hiddenColumnNames, defaultHiddenColumnNames, emptyMessageCompone
   if (tmp$1) {
     tmp.messages = tmp$1[0];
   }
-  if (columnExtensions) {
-    tmp.columnExtensions = columnExtensions[0];
-  }
-  var tmp$2 = Js_option.map(Js_boolean.to_js_boolean, columnTogglingEnabled);
+  var tmp$2 = Js_option.map((function (v) {
+          return v.map(convertColumnExtensions);
+        }), columnExtensions);
   if (tmp$2) {
-    tmp.columnTogglingEnabled = tmp$2[0];
+    tmp.columnExtensions = tmp$2[0];
   }
-  return ReasonReact.wrapJsForReason(TableColumnVisibility.default, tmp, children);
+  var tmp$3 = Js_option.map(Js_boolean.to_js_boolean, columnTogglingEnabled);
+  if (tmp$3) {
+    tmp.columnTogglingEnabled = tmp$3[0];
+  }
+  return ReasonReact.wrapJsForReason(DxReactGridBootstrap4.TableColumnVisibility, tmp, children);
 }
 
-var TableColumnVisibility$1 = /* module */[
+var TableColumnVisibility = /* module */[
   /* convertMessages */convertMessages$4,
-  /* convertRhhd */convertRhhd,
+  /* convertColumnExtensions */convertColumnExtensions,
   /* make */make$8
 ];
 
@@ -413,38 +412,15 @@ var jsMapperConstantArray$2 = /* array */[
   ]
 ];
 
-function align_rbgpToJs(param) {
+function alignToJs(param) {
   return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$2);
 }
 
-function align_rbgpFromJs(param) {
+function alignFromJs(param) {
   return Js_mapperRt.revSearch(3, jsMapperConstantArray$2, param);
 }
 
 var jsMapperConstantArray$3 = /* array */[
-  /* tuple */[
-    -57574468,
-    "right"
-  ],
-  /* tuple */[
-    847852583,
-    "left"
-  ],
-  /* tuple */[
-    980392437,
-    "center"
-  ]
-];
-
-function align_rw5lToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$3);
-}
-
-function align_rw5lFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$3, param);
-}
-
-var jsMapperConstantArray$4 = /* array */[
   /* tuple */[
     -322412134,
     "cancel"
@@ -467,12 +443,12 @@ var jsMapperConstantArray$4 = /* array */[
   ]
 ];
 
-function id_rpbaToJs(param) {
-  return Js_mapperRt.binarySearch(5, param, jsMapperConstantArray$4);
+function idToJs(param) {
+  return Js_mapperRt.binarySearch(5, param, jsMapperConstantArray$3);
 }
 
-function id_rpbaFromJs(param) {
-  return Js_mapperRt.revSearch(5, jsMapperConstantArray$4, param);
+function idFromJs(param) {
+  return Js_mapperRt.revSearch(5, jsMapperConstantArray$3, param);
 }
 
 function convertMessages$5(madeObj) {
@@ -519,19 +495,69 @@ function make$9(cellComponent, headerCellComponent, commandComponent, showAddCom
   if (tmp$5) {
     tmp.messages = tmp$5[0];
   }
-  return ReasonReact.wrapJsForReason(TableEditColumn.default, tmp, children);
+  return ReasonReact.wrapJsForReason(DxReactGridBootstrap4.TableEditColumn, tmp, children);
 }
 
-var TableEditColumn$1 = /* module */[
-  /* align_rbgpToJs */align_rbgpToJs,
-  /* align_rbgpFromJs */align_rbgpFromJs,
-  /* align_rw5lToJs */align_rw5lToJs,
-  /* align_rw5lFromJs */align_rw5lFromJs,
-  /* id_rpbaToJs */id_rpbaToJs,
-  /* id_rpbaFromJs */id_rpbaFromJs,
+var TableEditColumn = /* module */[
+  /* alignToJs */alignToJs,
+  /* alignFromJs */alignFromJs,
+  /* idToJs */idToJs,
+  /* idFromJs */idFromJs,
   /* convertMessages */convertMessages$5,
   /* make */make$9
 ];
+
+var jsMapperConstantArray$4 = /* array */[
+  /* tuple */[
+    -57574468,
+    "right"
+  ],
+  /* tuple */[
+    847852583,
+    "left"
+  ],
+  /* tuple */[
+    980392437,
+    "center"
+  ]
+];
+
+function alignToJs$1(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$4);
+}
+
+function alignFromJs$1(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$4, param);
+}
+
+function make$10(rowHeight, cellComponent, rowComponent, children) {
+  var tmp = { };
+  var tmp$1 = Js_option.map(unwrapValue, rowHeight);
+  if (tmp$1) {
+    tmp.rowHeight = tmp$1[0];
+  }
+  if (cellComponent) {
+    tmp.cellComponent = cellComponent[0];
+  }
+  if (rowComponent) {
+    tmp.rowComponent = rowComponent[0];
+  }
+  return ReasonReact.wrapJsForReason(DxReactGridBootstrap4.TableEditRow, tmp, children);
+}
+
+var TableEditRow = /* module */[
+  /* alignToJs */alignToJs$1,
+  /* alignFromJs */alignFromJs$1,
+  /* make */make$10
+];
+
+function convertMessages$6(madeObj) {
+  var returnObj = { };
+  if (madeObj) {
+    returnObj["filterPlaceholder"] = madeObj[0]["filterPlaceholder"];
+  }
+  return /* Some */[returnObj];
+}
 
 var jsMapperConstantArray$5 = /* array */[
   /* tuple */[
@@ -548,64 +574,12 @@ var jsMapperConstantArray$5 = /* array */[
   ]
 ];
 
-function align_rki5ToJs(param) {
+function alignToJs$2(param) {
   return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$5);
 }
 
-function align_rki5FromJs(param) {
+function alignFromJs$2(param) {
   return Js_mapperRt.revSearch(3, jsMapperConstantArray$5, param);
-}
-
-function make$10(rowHeight, cellComponent, rowComponent, children) {
-  var tmp = { };
-  var tmp$1 = Js_option.map(unwrapValue, rowHeight);
-  if (tmp$1) {
-    tmp.rowHeight = tmp$1[0];
-  }
-  if (cellComponent) {
-    tmp.cellComponent = cellComponent[0];
-  }
-  if (rowComponent) {
-    tmp.rowComponent = rowComponent[0];
-  }
-  return ReasonReact.wrapJsForReason(TableEditRow.default, tmp, children);
-}
-
-var TableEditRow$1 = /* module */[
-  /* align_rki5ToJs */align_rki5ToJs,
-  /* align_rki5FromJs */align_rki5FromJs,
-  /* make */make$10
-];
-
-function convertMessages$6(madeObj) {
-  var returnObj = { };
-  if (madeObj) {
-    returnObj["filterPlaceholder"] = madeObj[0]["filterPlaceholder"];
-  }
-  return /* Some */[returnObj];
-}
-
-var jsMapperConstantArray$6 = /* array */[
-  /* tuple */[
-    -57574468,
-    "right"
-  ],
-  /* tuple */[
-    847852583,
-    "left"
-  ],
-  /* tuple */[
-    980392437,
-    "center"
-  ]
-];
-
-function align_ro1zToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$6);
-}
-
-function align_ro1zFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$6, param);
 }
 
 function make$11(rowHeight, messages, cellComponent, rowComponent, children) {
@@ -624,17 +598,17 @@ function make$11(rowHeight, messages, cellComponent, rowComponent, children) {
   if (rowComponent) {
     tmp.rowComponent = rowComponent[0];
   }
-  return ReasonReact.wrapJsForReason(TableFilterRow.default, tmp, children);
+  return ReasonReact.wrapJsForReason(DxReactGridBootstrap4.TableFilterRow, tmp, children);
 }
 
-var TableFilterRow$1 = /* module */[
+var TableFilterRow = /* module */[
   /* convertMessages */convertMessages$6,
-  /* align_ro1zToJs */align_ro1zToJs,
-  /* align_ro1zFromJs */align_ro1zFromJs,
+  /* alignToJs */alignToJs$2,
+  /* alignFromJs */alignFromJs$2,
   /* make */make$11
 ];
 
-var jsMapperConstantArray$7 = /* array */[
+var jsMapperConstantArray$6 = /* array */[
   /* tuple */[
     -57574468,
     "right"
@@ -649,41 +623,18 @@ var jsMapperConstantArray$7 = /* array */[
   ]
 ];
 
-function align_ra97ToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$7);
+function alignToJs$3(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$6);
 }
 
-function align_ra97FromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$7, param);
+function alignFromJs$3(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$6, param);
 }
 
-var jsMapperConstantArray$8 = /* array */[
-  /* tuple */[
-    -57574468,
-    "right"
-  ],
-  /* tuple */[
-    847852583,
-    "left"
-  ],
-  /* tuple */[
-    980392437,
-    "center"
-  ]
-];
-
-function align_ro3qToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$8);
-}
-
-function align_ro3qFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$8, param);
-}
-
-function convertR5if(madeObj) {
+function convertColumnExtensions$1(madeObj) {
   var returnObj = { };
   returnObj["columnName"] = madeObj["columnName"];
-  returnObj["showWhenGrouped"] = madeObj["showWhenGrouped"];
+  returnObj["showWhenGrouped"] = Js_option.map(Js_boolean.to_js_boolean, madeObj["showWhenGrouped"]);
   return returnObj;
 }
 
@@ -706,22 +657,23 @@ function make$12(cellComponent, rowComponent, indentCellComponent, indentColumnW
   if (tmp$2) {
     tmp.showColumnsWhenGrouped = tmp$2[0];
   }
-  if (columnExtensions) {
-    tmp.columnExtensions = columnExtensions[0];
+  var tmp$3 = Js_option.map((function (v) {
+          return v.map(convertColumnExtensions$1);
+        }), columnExtensions);
+  if (tmp$3) {
+    tmp.columnExtensions = tmp$3[0];
   }
-  return ReasonReact.wrapJsForReason(TableGroupRow.default, tmp, children);
+  return ReasonReact.wrapJsForReason(DxReactGridBootstrap4.TableGroupRow, tmp, children);
 }
 
-var TableGroupRow$1 = /* module */[
-  /* align_ra97ToJs */align_ra97ToJs,
-  /* align_ra97FromJs */align_ra97FromJs,
-  /* align_ro3qToJs */align_ro3qToJs,
-  /* align_ro3qFromJs */align_ro3qFromJs,
-  /* convertR5if */convertR5if,
+var TableGroupRow = /* module */[
+  /* alignToJs */alignToJs$3,
+  /* alignFromJs */alignFromJs$3,
+  /* convertColumnExtensions */convertColumnExtensions$1,
   /* make */make$12
 ];
 
-var jsMapperConstantArray$9 = /* array */[
+var jsMapperConstantArray$7 = /* array */[
   /* tuple */[
     -57574468,
     "right"
@@ -736,15 +688,15 @@ var jsMapperConstantArray$9 = /* array */[
   ]
 ];
 
-function align_rwo8ToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$9);
+function alignToJs$4(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$7);
 }
 
-function align_rwo8FromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$9, param);
+function alignFromJs$4(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$7, param);
 }
 
-var jsMapperConstantArray$10 = /* array */[
+var jsMapperConstantArray$8 = /* array */[
   /* tuple */[
     3258129,
     "asc"
@@ -755,15 +707,15 @@ var jsMapperConstantArray$10 = /* array */[
   ]
 ];
 
-function sortingDirection_rse4ToJs(param) {
-  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$10);
+function sortingDirectionToJs$1(param) {
+  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$8);
 }
 
-function sortingDirection_rse4FromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$10, param);
+function sortingDirectionFromJs$1(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$8, param);
 }
 
-var jsMapperConstantArray$11 = /* array */[
+var jsMapperConstantArray$9 = /* array */[
   /* tuple */[
     3258129,
     "asc"
@@ -774,12 +726,12 @@ var jsMapperConstantArray$11 = /* array */[
   ]
 ];
 
-function rve5_r93uToJs(param) {
-  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$11);
+function r90gToJs(param) {
+  return Js_mapperRt.binarySearch(2, param, jsMapperConstantArray$9);
 }
 
-function rve5_r93uFromJs(param) {
-  return Js_mapperRt.revSearch(2, jsMapperConstantArray$11, param);
+function r90gFromJs(param) {
+  return Js_mapperRt.revSearch(2, jsMapperConstantArray$9, param);
 }
 
 function convertMessages$7(madeObj) {
@@ -810,21 +762,21 @@ function make$13(showSortingControls, showGroupingControls, cellComponent, rowCo
   if (tmp$3) {
     tmp.messages = tmp$3[0];
   }
-  return ReasonReact.wrapJsForReason(TableHeaderRow.default, tmp, children);
+  return ReasonReact.wrapJsForReason(DxReactGridBootstrap4.TableHeaderRow, tmp, children);
 }
 
-var TableHeaderRow$1 = /* module */[
-  /* align_rwo8ToJs */align_rwo8ToJs,
-  /* align_rwo8FromJs */align_rwo8FromJs,
-  /* sortingDirection_rse4ToJs */sortingDirection_rse4ToJs,
-  /* sortingDirection_rse4FromJs */sortingDirection_rse4FromJs,
-  /* rve5_r93uToJs */rve5_r93uToJs,
-  /* rve5_r93uFromJs */rve5_r93uFromJs,
+var TableHeaderRow = /* module */[
+  /* alignToJs */alignToJs$4,
+  /* alignFromJs */alignFromJs$4,
+  /* sortingDirectionToJs */sortingDirectionToJs$1,
+  /* sortingDirectionFromJs */sortingDirectionFromJs$1,
+  /* r90gToJs */r90gToJs,
+  /* r90gFromJs */r90gFromJs,
   /* convertMessages */convertMessages$7,
   /* make */make$13
 ];
 
-var jsMapperConstantArray$12 = /* array */[
+var jsMapperConstantArray$10 = /* array */[
   /* tuple */[
     -57574468,
     "right"
@@ -839,35 +791,12 @@ var jsMapperConstantArray$12 = /* array */[
   ]
 ];
 
-function align_rs2bToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$12);
+function alignToJs$5(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$10);
 }
 
-function align_rs2bFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$12, param);
-}
-
-var jsMapperConstantArray$13 = /* array */[
-  /* tuple */[
-    -57574468,
-    "right"
-  ],
-  /* tuple */[
-    847852583,
-    "left"
-  ],
-  /* tuple */[
-    980392437,
-    "center"
-  ]
-];
-
-function align_r7o6ToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$13);
-}
-
-function align_r7o6FromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$13, param);
+function alignFromJs$5(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$10, param);
 }
 
 function make$14(contentComponent, toggleCellComponent, cellComponent, rowComponent, toggleColumnWidth, rowHeight, children) {
@@ -892,18 +821,16 @@ function make$14(contentComponent, toggleCellComponent, cellComponent, rowCompon
   if (tmp$2) {
     tmp.rowHeight = tmp$2[0];
   }
-  return ReasonReact.wrapJsForReason(TableRowDetail.default, tmp, children);
+  return ReasonReact.wrapJsForReason(DxReactGridBootstrap4.TableRowDetail, tmp, children);
 }
 
-var TableRowDetail$1 = /* module */[
-  /* align_rs2bToJs */align_rs2bToJs,
-  /* align_rs2bFromJs */align_rs2bFromJs,
-  /* align_r7o6ToJs */align_r7o6ToJs,
-  /* align_r7o6FromJs */align_r7o6FromJs,
+var TableRowDetail = /* module */[
+  /* alignToJs */alignToJs$5,
+  /* alignFromJs */alignFromJs$5,
   /* make */make$14
 ];
 
-var jsMapperConstantArray$14 = /* array */[
+var jsMapperConstantArray$11 = /* array */[
   /* tuple */[
     -57574468,
     "right"
@@ -918,35 +845,12 @@ var jsMapperConstantArray$14 = /* array */[
   ]
 ];
 
-function align_redsToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$14);
+function alignToJs$6(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$11);
 }
 
-function align_redsFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$14, param);
-}
-
-var jsMapperConstantArray$15 = /* array */[
-  /* tuple */[
-    -57574468,
-    "right"
-  ],
-  /* tuple */[
-    847852583,
-    "left"
-  ],
-  /* tuple */[
-    980392437,
-    "center"
-  ]
-];
-
-function align_rtzzToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$15);
-}
-
-function align_rtzzFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$15, param);
+function alignFromJs$6(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$11, param);
 }
 
 function make$15(headerCellComponent, cellComponent, rowComponent, highlightRow, selectByRowClick, showSelectAll, showSelectionColumn, selectionColumnWidth, children) {
@@ -980,18 +884,16 @@ function make$15(headerCellComponent, cellComponent, rowComponent, highlightRow,
   if (tmp$5) {
     tmp.selectionColumnWidth = tmp$5[0];
   }
-  return ReasonReact.wrapJsForReason(TableSelection.default, tmp, children);
+  return ReasonReact.wrapJsForReason(DxReactGridBootstrap4.TableSelection, tmp, children);
 }
 
-var TableSelection$1 = /* module */[
-  /* align_redsToJs */align_redsToJs,
-  /* align_redsFromJs */align_redsFromJs,
-  /* align_rtzzToJs */align_rtzzToJs,
-  /* align_rtzzFromJs */align_rtzzFromJs,
+var TableSelection = /* module */[
+  /* alignToJs */alignToJs$6,
+  /* alignFromJs */alignFromJs$6,
   /* make */make$15
 ];
 
-var jsMapperConstantArray$16 = /* array */[
+var jsMapperConstantArray$12 = /* array */[
   /* tuple */[
     -57574468,
     "right"
@@ -1006,88 +908,21 @@ var jsMapperConstantArray$16 = /* array */[
   ]
 ];
 
-function align_rf4kToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$16);
+function alignToJs$7(param) {
+  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$12);
 }
 
-function align_rf4kFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$16, param);
+function alignFromJs$7(param) {
+  return Js_mapperRt.revSearch(3, jsMapperConstantArray$12, param);
 }
 
-var jsMapperConstantArray$17 = /* array */[
-  /* tuple */[
-    -57574468,
-    "right"
-  ],
-  /* tuple */[
-    847852583,
-    "left"
-  ],
-  /* tuple */[
-    980392437,
-    "center"
-  ]
-];
-
-function align_rhspToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$17);
-}
-
-function align_rhspFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$17, param);
-}
-
-var jsMapperConstantArray$18 = /* array */[
-  /* tuple */[
-    -57574468,
-    "right"
-  ],
-  /* tuple */[
-    847852583,
-    "left"
-  ],
-  /* tuple */[
-    980392437,
-    "center"
-  ]
-];
-
-function align_rjlgToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$18);
-}
-
-function align_rjlgFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$18, param);
-}
-
-var jsMapperConstantArray$19 = /* array */[
-  /* tuple */[
-    -57574468,
-    "right"
-  ],
-  /* tuple */[
-    847852583,
-    "left"
-  ],
-  /* tuple */[
-    980392437,
-    "center"
-  ]
-];
-
-function align_rrhfToJs(param) {
-  return Js_mapperRt.binarySearch(3, param, jsMapperConstantArray$19);
-}
-
-function align_rrhfFromJs(param) {
-  return Js_mapperRt.revSearch(3, jsMapperConstantArray$19, param);
-}
-
-function convertRxbw(madeObj) {
+function convertColumnExtensions$2(madeObj) {
   var returnObj = { };
   returnObj["columnName"] = madeObj["columnName"];
-  returnObj["width"] = madeObj["width"];
-  returnObj["align"] = madeObj["align"];
+  returnObj["width"] = Js_option.map(unwrapValue, madeObj["width"]);
+  returnObj["align"] = Js_option.map((function (v) {
+          return Js_mapperRt.binarySearch(3, v, jsMapperConstantArray$12);
+        }), madeObj["align"]);
   return returnObj;
 }
 
@@ -1134,29 +969,26 @@ function make$16(layoutComponent, tableComponent, headComponent, bodyComponent, 
   if (stubHeaderCellComponent) {
     tmp.stubHeaderCellComponent = stubHeaderCellComponent[0];
   }
-  if (columnExtensions) {
-    tmp.columnExtensions = columnExtensions[0];
-  }
-  var tmp$1 = convertMessages$8(messages);
+  var tmp$1 = Js_option.map((function (v) {
+          return v.map(convertColumnExtensions$2);
+        }), columnExtensions);
   if (tmp$1) {
-    tmp.messages = tmp$1[0];
+    tmp.columnExtensions = tmp$1[0];
+  }
+  var tmp$2 = convertMessages$8(messages);
+  if (tmp$2) {
+    tmp.messages = tmp$2[0];
   }
   if (fixedHeaderComponent) {
     tmp.fixedHeaderComponent = fixedHeaderComponent[0];
   }
-  return ReasonReact.wrapJsForReason(Table.default, tmp, children);
+  return ReasonReact.wrapJsForReason(DxReactGridBootstrap4.Table, tmp, children);
 }
 
-var Table$1 = /* module */[
-  /* align_rf4kToJs */align_rf4kToJs,
-  /* align_rf4kFromJs */align_rf4kFromJs,
-  /* align_rhspToJs */align_rhspToJs,
-  /* align_rhspFromJs */align_rhspFromJs,
-  /* align_rjlgToJs */align_rjlgToJs,
-  /* align_rjlgFromJs */align_rjlgFromJs,
-  /* align_rrhfToJs */align_rrhfToJs,
-  /* align_rrhfFromJs */align_rrhfFromJs,
-  /* convertRxbw */convertRxbw,
+var Table = /* module */[
+  /* alignToJs */alignToJs$7,
+  /* alignFromJs */alignFromJs$7,
+  /* convertColumnExtensions */convertColumnExtensions$2,
   /* convertMessages */convertMessages$8,
   /* make */make$16
 ];
@@ -1169,10 +1001,10 @@ function make$17(rootComponent, flexibleSpaceComponent, children) {
   if (flexibleSpaceComponent) {
     tmp.flexibleSpaceComponent = flexibleSpaceComponent[0];
   }
-  return ReasonReact.wrapJsForReason(Toolbar.default, tmp, children);
+  return ReasonReact.wrapJsForReason(DxReactGridBootstrap4.Toolbar, tmp, children);
 }
 
-var Toolbar$1 = /* module */[/* make */make$17];
+var Toolbar = /* module */[/* make */make$17];
 
 function convertMessages$9(madeObj) {
   var returnObj = { };
@@ -1196,32 +1028,32 @@ function make$18(estimatedRowHeight, height, messages, children) {
   if (tmp$3) {
     tmp.messages = tmp$3[0];
   }
-  return ReasonReact.wrapJsForReason(VirtualTable.default, tmp, children);
+  return ReasonReact.wrapJsForReason(DxReactGridBootstrap4.VirtualTable, tmp, children);
 }
 
-var VirtualTable$1 = /* module */[
+var VirtualTable = /* module */[
   /* convertMessages */convertMessages$9,
   /* make */make$18
 ];
 
 exports.unwrapValue = unwrapValue;
-exports.ColumnChooser = ColumnChooser$1;
-exports.DragDropProvider = DragDropProvider$1;
-exports.Grid = Grid$1;
-exports.GroupingPanel = GroupingPanel$1;
-exports.PagingPanel = PagingPanel$1;
-exports.SearchPanel = SearchPanel$1;
-exports.TableColumnReordering = TableColumnReordering$1;
-exports.TableColumnResizing = TableColumnResizing$1;
-exports.TableColumnVisibility = TableColumnVisibility$1;
-exports.TableEditColumn = TableEditColumn$1;
-exports.TableEditRow = TableEditRow$1;
-exports.TableFilterRow = TableFilterRow$1;
-exports.TableGroupRow = TableGroupRow$1;
-exports.TableHeaderRow = TableHeaderRow$1;
-exports.TableRowDetail = TableRowDetail$1;
-exports.TableSelection = TableSelection$1;
-exports.Table = Table$1;
-exports.Toolbar = Toolbar$1;
-exports.VirtualTable = VirtualTable$1;
+exports.ColumnChooser = ColumnChooser;
+exports.DragDropProvider = DragDropProvider;
+exports.Grid = Grid;
+exports.GroupingPanel = GroupingPanel;
+exports.PagingPanel = PagingPanel;
+exports.SearchPanel = SearchPanel;
+exports.TableColumnReordering = TableColumnReordering;
+exports.TableColumnResizing = TableColumnResizing;
+exports.TableColumnVisibility = TableColumnVisibility;
+exports.TableEditColumn = TableEditColumn;
+exports.TableEditRow = TableEditRow;
+exports.TableFilterRow = TableFilterRow;
+exports.TableGroupRow = TableGroupRow;
+exports.TableHeaderRow = TableHeaderRow;
+exports.TableRowDetail = TableRowDetail;
+exports.TableSelection = TableSelection;
+exports.Table = Table;
+exports.Toolbar = Toolbar;
+exports.VirtualTable = VirtualTable;
 /* ReasonReact Not a pure module */

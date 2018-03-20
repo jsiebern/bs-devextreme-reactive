@@ -23,7 +23,8 @@ let unwrapValue =
 module ColumnChooser = {
   type typeMessages;
   [@bs.obj]
-  external makeMessages : (~showColumnChooser: string=?, unit) => _ = "";
+  external makeMessages : (~showColumnChooser: string=?, unit) => typeMessages =
+    "";
   [@bs.get_index] external getFromMessages : (typeMessages, string) => 'a = "";
   let convertMessages = (madeObj: option(typeMessages)) => {
     let returnObj: Js.Dict.t(string) = Js.Dict.empty();
@@ -32,7 +33,7 @@ module ColumnChooser = {
       Js.Dict.set(
         returnObj,
         "showColumnChooser",
-        getFromMessages(madeObj, "showColumnChooser"),
+        toJsUnsafe(getFromMessages(madeObj, "showColumnChooser")),
       );
       ();
     | None => ()
@@ -42,17 +43,17 @@ module ColumnChooser = {
   [@bs.obj]
   external makeProps :
     (
-      ~overlayComponent: 'any_r5gp=?,
-      ~containerComponent: 'any_r9gk=?,
-      ~itemComponent: 'any_rk9f=?,
-      ~toggleButtonComponent: 'any_rjq0=?,
-      ~messages: 'any_r6so=?,
+      ~overlayComponent: 'any_rfne=?,
+      ~containerComponent: 'any_rnbr=?,
+      ~itemComponent: 'any_ries=?,
+      ~toggleButtonComponent: 'any_r7vo=?,
+      ~messages: 'any_rp6g=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-grid-bootstrap4/ColumnChooser"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-grid-bootstrap4"]
+  external reactClass : ReasonReact.reactClass = "ColumnChooser";
   let make =
       (
         ~overlayComponent:
@@ -60,7 +61,7 @@ module ColumnChooser = {
              {
                .
                "visible": bool,
-               "target": 'any_rt8o,
+               "target": 'any_rp8g,
                "onHide": unit => unit,
                "children": ReasonReact.reactElement,
              } =>
@@ -81,7 +82,7 @@ module ColumnChooser = {
                    .
                    "name": string,
                    "title": string,
-                   "getCellValue": ('any_rsf8, string) => 'any_rg0q,
+                   "getCellValue": ('any_rnrc, string) => 'any_rzmw,
                  },
                  "hidden": bool,
                },
@@ -96,7 +97,7 @@ module ColumnChooser = {
                .
                "onToggle": unit => unit,
                "getMessage": string => string,
-               "buttonRef": 'any_rdgj => unit,
+               "buttonRef": 'any_r4ub => unit,
              } =>
              ReasonReact.reactElement,
            )=?,
@@ -121,11 +122,11 @@ module ColumnChooser = {
 module DragDropProvider = {
   [@bs.obj]
   external makeProps :
-    (~containerComponent: 'any_ry4g=?, ~columnComponent: 'any_rkgc=?, unit) =>
+    (~containerComponent: 'any_rdmw=?, ~columnComponent: 'any_rpof=?, unit) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-grid-bootstrap4/DragDropProvider"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-grid-bootstrap4"]
+  external reactClass : ReasonReact.reactClass = "DragDropProvider";
   let make =
       (
         ~containerComponent:
@@ -149,7 +150,7 @@ module DragDropProvider = {
                  .
                  "name": string,
                  "title": string,
-                 "getCellValue": ('any_r71g, string) => 'any_rukf,
+                 "getCellValue": ('any_rsig, string) => 'any_rn7t,
                },
              } =>
              ReasonReact.reactElement,
@@ -164,46 +165,55 @@ module DragDropProvider = {
 };
 
 module Grid = {
-  type typeRjgb;
+  type typeColumns;
   [@bs.obj]
-  external makeRjgb :
-    (~name: string, ~title: string=?, ~getCellValue: 'any_rkwp=?, unit) => _ =
+  external makeColumns :
+    (~name: string, ~title: string=?, ~getCellValue: 'any_rhlr=?, unit) =>
+    typeColumns =
     "";
-  [@bs.get_index] external getFromRjgb : (typeRjgb, string) => 'a = "";
-  let convertRjgb = (madeObj: typeRjgb) => {
+  [@bs.get_index] external getFromColumns : (typeColumns, string) => 'a = "";
+  let convertColumns = (madeObj: typeColumns) => {
     let returnObj: Js.Dict.t(string) = Js.Dict.empty();
-    Js.Dict.set(returnObj, "name", getFromRjgb(madeObj, "name"));
-    Js.Dict.set(returnObj, "title", getFromRjgb(madeObj, "title"));
+    Js.Dict.set(
+      returnObj,
+      "name",
+      toJsUnsafe(getFromColumns(madeObj, "name")),
+    );
+    Js.Dict.set(
+      returnObj,
+      "title",
+      toJsUnsafe(getFromColumns(madeObj, "title")),
+    );
     Js.Dict.set(
       returnObj,
       "getCellValue",
-      getFromRjgb(madeObj, "getCellValue"),
+      toJsUnsafe(getFromColumns(madeObj, "getCellValue")),
     );
     returnObj;
   };
   [@bs.obj]
   external makeProps :
     (
-      ~rows: array('any_r5kj)=?,
-      ~getRowId: 'any_rg61=?,
-      ~getCellValue: 'any_r7ky=?,
-      ~columns: array(typeRjgb)=?,
-      ~rootComponent: 'any_r1x8=?,
+      ~rows: array('any_rugv)=?,
+      ~getRowId: 'any_rugb=?,
+      ~getCellValue: 'any_rb43=?,
+      ~columns: array(typeColumns)=?,
+      ~rootComponent: 'any_rbw3=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-grid-bootstrap4/Grid"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-grid-bootstrap4"]
+  external reactClass : ReasonReact.reactClass = "Grid";
   let make =
       (
-        ~rows: option(array('any_r5kj))=?,
+        ~rows: option(array('any_rugv))=?,
         ~getRowId:
            option(
-             'any_rmxs => [ | `Int(int) | `Float(float) | `String(string)],
+             'any_r8em => [ | `Int(int) | `Float(float) | `String(string)],
            )=?,
-        ~getCellValue: option(('any_rior, string) => 'any_rhld)=?,
-        ~columns: option(array(typeRjgb))=?,
+        ~getCellValue: option(('any_rrv9, string) => 'any_r7z8)=?,
+        ~columns: option(array(typeColumns))=?,
         ~rootComponent:
            option(
              {. "children": ReasonReact.reactElement} =>
@@ -215,10 +225,19 @@ module Grid = {
       ~reactClass,
       ~props=
         makeProps(
-          ~rows?,
+          ~rows=?
+            Js.Option.map(
+              (. v) => Js.Array.map(item => toJsUnsafe(item), v),
+              rows,
+            ),
           ~getRowId?,
           ~getCellValue?,
-          ~columns?,
+          ~columns=?
+            Js.Option.map(
+              (. v) =>
+                Js.Array.map(item => toJsUnsafe(convertColumns(item)), v),
+              columns,
+            ),
           ~rootComponent?,
           (),
         ),
@@ -228,14 +247,13 @@ module Grid = {
 
 module GroupingPanel = {
   [@bs.deriving jsConverter]
-  type sortingDirection_rty5 = [
-    | [@bs.as "asc"] `Asc
-    | [@bs.as "desc"] `Desc
-  ];
+  type sortingDirection = [ | [@bs.as "asc"] `Asc | [@bs.as "desc"] `Desc];
   [@bs.deriving jsConverter]
-  type rqpw_r7xq = [ | [@bs.as "asc"] `Asc | [@bs.as "desc"] `Desc];
+  type rhf7 = [ | [@bs.as "asc"] `Asc | [@bs.as "desc"] `Desc];
   type typeMessages;
-  [@bs.obj] external makeMessages : (~groupByColumn: string=?, unit) => _ = "";
+  [@bs.obj]
+  external makeMessages : (~groupByColumn: string=?, unit) => typeMessages =
+    "";
   [@bs.get_index] external getFromMessages : (typeMessages, string) => 'a = "";
   let convertMessages = (madeObj: option(typeMessages)) => {
     let returnObj: Js.Dict.t(string) = Js.Dict.empty();
@@ -244,7 +262,7 @@ module GroupingPanel = {
       Js.Dict.set(
         returnObj,
         "groupByColumn",
-        getFromMessages(madeObj, "groupByColumn"),
+        toJsUnsafe(getFromMessages(madeObj, "groupByColumn")),
       );
       ();
     | None => ()
@@ -256,22 +274,22 @@ module GroupingPanel = {
     (
       ~showSortingControls: Js.boolean=?,
       ~showGroupingControls: Js.boolean=?,
-      ~layoutComponent: 'any_rhfg=?,
-      ~containerComponent: 'any_ra5w=?,
-      ~itemComponent: 'any_rl4h=?,
-      ~emptyMessageComponent: 'any_rwdo=?,
-      ~messages: 'any_rc0f=?,
+      ~layoutComponent: 'any_rfkn=?,
+      ~containerComponent: 'any_r2s2=?,
+      ~itemComponent: 'any_rtn1=?,
+      ~emptyMessageComponent: 'any_rf45=?,
+      ~messages: 'any_rj5n=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-grid-bootstrap4/GroupingPanel"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-grid-bootstrap4"]
+  external reactClass : ReasonReact.reactClass = "GroupingPanel";
   let make =
       (
         ~showSortingControls: option(bool)=?,
         ~showGroupingControls: option(bool)=?,
-        ~layoutComponent: option('any_rhfg)=?,
+        ~layoutComponent: option('any_rfkn)=?,
         ~containerComponent:
            option(
              {. "children": ReasonReact.reactElement} =>
@@ -287,7 +305,7 @@ module GroupingPanel = {
                    .
                    "name": string,
                    "title": string,
-                   "getCellValue": ('any_rjlt, string) => 'any_rfk7,
+                   "getCellValue": ('any_rjdv, string) => 'any_rj8t,
                  },
                  "draft": string,
                },
@@ -295,10 +313,9 @@ module GroupingPanel = {
                "showSortingControls": bool,
                "groupingEnabled": bool,
                "sortingEnabled": bool,
-               "sortingDirection": sortingDirection_rty5,
+               "sortingDirection": sortingDirection,
                "onSort":
-                 {. "direction": [ | `Any('any_rppy) | `Enum(rqpw_r7xq)]} =>
-                 unit,
+                 {. "direction": [ | `Any('any_rtkq) | `Enum(rhf7)]} => unit,
                "onGroup": unit => unit,
              } =>
              ReasonReact.reactElement,
@@ -339,20 +356,29 @@ module PagingPanel = {
   type typeMessages;
   [@bs.obj]
   external makeMessages :
-    (~showAll: string=?, ~rowsPerPage: string=?, ~info: 'any_re5q=?, unit) => _ =
+    (~showAll: string=?, ~rowsPerPage: string=?, ~info: 'any_roxm=?, unit) =>
+    typeMessages =
     "";
   [@bs.get_index] external getFromMessages : (typeMessages, string) => 'a = "";
   let convertMessages = (madeObj: option(typeMessages)) => {
     let returnObj: Js.Dict.t(string) = Js.Dict.empty();
     switch (madeObj) {
     | Some(madeObj) =>
-      Js.Dict.set(returnObj, "showAll", getFromMessages(madeObj, "showAll"));
+      Js.Dict.set(
+        returnObj,
+        "showAll",
+        toJsUnsafe(getFromMessages(madeObj, "showAll")),
+      );
       Js.Dict.set(
         returnObj,
         "rowsPerPage",
-        getFromMessages(madeObj, "rowsPerPage"),
+        toJsUnsafe(getFromMessages(madeObj, "rowsPerPage")),
       );
-      Js.Dict.set(returnObj, "info", getFromMessages(madeObj, "info"));
+      Js.Dict.set(
+        returnObj,
+        "info",
+        toJsUnsafe(getFromMessages(madeObj, "info")),
+      );
       ();
     | None => ()
     };
@@ -361,15 +387,15 @@ module PagingPanel = {
   [@bs.obj]
   external makeProps :
     (
-      ~pageSizes: 'arrayOf_rl5k=?,
-      ~containerComponent: 'any_rafd=?,
-      ~messages: 'any_r9t4=?,
+      ~pageSizes: 'arrayOf_rjby=?,
+      ~containerComponent: 'any_rkaa=?,
+      ~messages: 'any_rcoy=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-grid-bootstrap4/PagingPanel"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-grid-bootstrap4"]
+  external reactClass : ReasonReact.reactClass = "PagingPanel";
   let make =
       (
         ~pageSizes:
@@ -410,7 +436,8 @@ module PagingPanel = {
 module SearchPanel = {
   type typeMessages;
   [@bs.obj]
-  external makeMessages : (~searchPlaceholder: string=?, unit) => _ = "";
+  external makeMessages : (~searchPlaceholder: string=?, unit) => typeMessages =
+    "";
   [@bs.get_index] external getFromMessages : (typeMessages, string) => 'a = "";
   let convertMessages = (madeObj: option(typeMessages)) => {
     let returnObj: Js.Dict.t(string) = Js.Dict.empty();
@@ -419,7 +446,7 @@ module SearchPanel = {
       Js.Dict.set(
         returnObj,
         "searchPlaceholder",
-        getFromMessages(madeObj, "searchPlaceholder"),
+        toJsUnsafe(getFromMessages(madeObj, "searchPlaceholder")),
       );
       ();
     | None => ()
@@ -428,10 +455,10 @@ module SearchPanel = {
   };
   [@bs.obj]
   external makeProps :
-    (~inputComponent: 'any_roge=?, ~messages: 'any_rgfe=?, unit) => _ =
+    (~inputComponent: 'any_rp2r=?, ~messages: 'any_r0pd=?, unit) => _ =
     "";
-  [@bs.module "@devexpress/dx-react-grid-bootstrap4/SearchPanel"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-grid-bootstrap4"]
+  external reactClass : ReasonReact.reactClass = "SearchPanel";
   let make =
       (
         ~inputComponent:
@@ -465,24 +492,24 @@ module TableColumnReordering = {
     (
       ~order: array(string)=?,
       ~defaultOrder: array(string)=?,
-      ~onOrderChange: 'any_rhcc=?,
-      ~tableContainerComponent: 'any_r5e2=?,
-      ~rowComponent: 'any_rlgu=?,
-      ~cellComponent: 'any_r0x1=?,
+      ~onOrderChange: 'any_rpzk=?,
+      ~tableContainerComponent: 'any_r6zb=?,
+      ~rowComponent: 'any_rqa0=?,
+      ~cellComponent: 'any_ri4c=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-grid-bootstrap4/TableColumnReordering"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-grid-bootstrap4"]
+  external reactClass : ReasonReact.reactClass = "TableColumnReordering";
   let make =
       (
         ~order: option(array(string))=?,
         ~defaultOrder: option(array(string))=?,
         ~onOrderChange: option(array(string) => unit)=?,
-        ~tableContainerComponent: option('any_r5e2)=?,
-        ~rowComponent: option('any_rlgu)=?,
-        ~cellComponent: option('any_r0x1)=?,
+        ~tableContainerComponent: option('any_r6zb)=?,
+        ~rowComponent: option('any_rqa0)=?,
+        ~cellComponent: option('any_ri4c)=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -502,42 +529,65 @@ module TableColumnReordering = {
 };
 
 module TableColumnResizing = {
-  type typeRprr;
+  type typeDefaultColumnWidths;
   [@bs.obj]
-  external makeRprr : (~columnName: string, ~width: 'number_j, unit) => _ = "";
-  [@bs.get_index] external getFromRprr : (typeRprr, string) => 'a = "";
-  let convertRprr = (madeObj: typeRprr) => {
+  external makeDefaultColumnWidths :
+    (~columnName: string, ~width: 'number_w, unit) => typeDefaultColumnWidths =
+    "";
+  [@bs.get_index]
+  external getFromDefaultColumnWidths : (typeDefaultColumnWidths, string) => 'a =
+    "";
+  let convertDefaultColumnWidths = (madeObj: typeDefaultColumnWidths) => {
     let returnObj: Js.Dict.t(string) = Js.Dict.empty();
-    Js.Dict.set(returnObj, "columnName", getFromRprr(madeObj, "columnName"));
-    Js.Dict.set(returnObj, "width", getFromRprr(madeObj, "width"));
+    Js.Dict.set(
+      returnObj,
+      "columnName",
+      toJsUnsafe(getFromDefaultColumnWidths(madeObj, "columnName")),
+    );
+    Js.Dict.set(
+      returnObj,
+      "width",
+      toJsUnsafe(unwrapValue(getFromDefaultColumnWidths(madeObj, "width"))),
+    );
     returnObj;
   };
-  type typeRj6i;
+  type typeColumnWidths;
   [@bs.obj]
-  external makeRj6i : (~columnName: string, ~width: 'number_2, unit) => _ = "";
-  [@bs.get_index] external getFromRj6i : (typeRj6i, string) => 'a = "";
-  let convertRj6i = (madeObj: typeRj6i) => {
+  external makeColumnWidths :
+    (~columnName: string, ~width: 'number_3, unit) => typeColumnWidths =
+    "";
+  [@bs.get_index]
+  external getFromColumnWidths : (typeColumnWidths, string) => 'a = "";
+  let convertColumnWidths = (madeObj: typeColumnWidths) => {
     let returnObj: Js.Dict.t(string) = Js.Dict.empty();
-    Js.Dict.set(returnObj, "columnName", getFromRj6i(madeObj, "columnName"));
-    Js.Dict.set(returnObj, "width", getFromRj6i(madeObj, "width"));
+    Js.Dict.set(
+      returnObj,
+      "columnName",
+      toJsUnsafe(getFromColumnWidths(madeObj, "columnName")),
+    );
+    Js.Dict.set(
+      returnObj,
+      "width",
+      toJsUnsafe(unwrapValue(getFromColumnWidths(madeObj, "width"))),
+    );
     returnObj;
   };
   [@bs.obj]
   external makeProps :
     (
-      ~defaultColumnWidths: array(typeRprr)=?,
-      ~columnWidths: array(typeRj6i)=?,
-      ~onColumnWidthsChange: 'any_rnry=?,
+      ~defaultColumnWidths: array(typeDefaultColumnWidths)=?,
+      ~columnWidths: array(typeColumnWidths)=?,
+      ~onColumnWidthsChange: 'any_rrqv=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-grid-bootstrap4/TableColumnResizing"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-grid-bootstrap4"]
+  external reactClass : ReasonReact.reactClass = "TableColumnResizing";
   let make =
       (
-        ~defaultColumnWidths: option(array(typeRprr))=?,
-        ~columnWidths: option(array(typeRj6i))=?,
+        ~defaultColumnWidths: option(array(typeDefaultColumnWidths))=?,
+        ~columnWidths: option(array(typeColumnWidths))=?,
         ~onColumnWidthsChange: option(Js.t({..}) => unit)=?,
         children,
       ) =>
@@ -545,8 +595,24 @@ module TableColumnResizing = {
       ~reactClass,
       ~props=
         makeProps(
-          ~defaultColumnWidths?,
-          ~columnWidths?,
+          ~defaultColumnWidths=?
+            Js.Option.map(
+              (. v) =>
+                Js.Array.map(
+                  item => toJsUnsafe(convertDefaultColumnWidths(item)),
+                  v,
+                ),
+              defaultColumnWidths,
+            ),
+          ~columnWidths=?
+            Js.Option.map(
+              (. v) =>
+                Js.Array.map(
+                  item => toJsUnsafe(convertColumnWidths(item)),
+                  v,
+                ),
+              columnWidths,
+            ),
           ~onColumnWidthsChange?,
           (),
         ),
@@ -556,7 +622,8 @@ module TableColumnResizing = {
 
 module TableColumnVisibility = {
   type typeMessages;
-  [@bs.obj] external makeMessages : (~noColumns: string=?, unit) => _ = "";
+  [@bs.obj]
+  external makeMessages : (~noColumns: string=?, unit) => typeMessages = "";
   [@bs.get_index] external getFromMessages : (typeMessages, string) => 'a = "";
   let convertMessages = (madeObj: option(typeMessages)) => {
     let returnObj: Js.Dict.t(string) = Js.Dict.empty();
@@ -565,26 +632,36 @@ module TableColumnVisibility = {
       Js.Dict.set(
         returnObj,
         "noColumns",
-        getFromMessages(madeObj, "noColumns"),
+        toJsUnsafe(getFromMessages(madeObj, "noColumns")),
       );
       ();
     | None => ()
     };
     Some(returnObj);
   };
-  type typeRhhd;
+  type typeColumnExtensions;
   [@bs.obj]
-  external makeRhhd :
-    (~columnName: string, ~togglingEnabled: Js.boolean, unit) => _ =
+  external makeColumnExtensions :
+    (~columnName: string, ~togglingEnabled: Js.boolean, unit) =>
+    typeColumnExtensions =
     "";
-  [@bs.get_index] external getFromRhhd : (typeRhhd, string) => 'a = "";
-  let convertRhhd = (madeObj: typeRhhd) => {
+  [@bs.get_index]
+  external getFromColumnExtensions : (typeColumnExtensions, string) => 'a = "";
+  let convertColumnExtensions = (madeObj: typeColumnExtensions) => {
     let returnObj: Js.Dict.t(string) = Js.Dict.empty();
-    Js.Dict.set(returnObj, "columnName", getFromRhhd(madeObj, "columnName"));
+    Js.Dict.set(
+      returnObj,
+      "columnName",
+      toJsUnsafe(getFromColumnExtensions(madeObj, "columnName")),
+    );
     Js.Dict.set(
       returnObj,
       "togglingEnabled",
-      getFromRhhd(madeObj, "togglingEnabled"),
+      toJsUnsafe(
+        Js.Boolean.to_js_boolean(
+          getFromColumnExtensions(madeObj, "togglingEnabled"),
+        ),
+      ),
     );
     returnObj;
   };
@@ -593,17 +670,17 @@ module TableColumnVisibility = {
     (
       ~hiddenColumnNames: array(string)=?,
       ~defaultHiddenColumnNames: array(string)=?,
-      ~emptyMessageComponent: 'any_r7xk=?,
-      ~onHiddenColumnNamesChange: 'any_r6ee=?,
-      ~messages: 'any_rx0u=?,
-      ~columnExtensions: array(typeRhhd)=?,
+      ~emptyMessageComponent: 'any_rkty=?,
+      ~onHiddenColumnNamesChange: 'any_rujn=?,
+      ~messages: 'any_rrnq=?,
+      ~columnExtensions: array(typeColumnExtensions)=?,
       ~columnTogglingEnabled: Js.boolean=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-grid-bootstrap4/TableColumnVisibility"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-grid-bootstrap4"]
+  external reactClass : ReasonReact.reactClass = "TableColumnVisibility";
   let make =
       (
         ~hiddenColumnNames: option(array(string))=?,
@@ -614,7 +691,7 @@ module TableColumnVisibility = {
            )=?,
         ~onHiddenColumnNamesChange: option(array(string) => unit)=?,
         ~messages: option(typeMessages)=?,
-        ~columnExtensions: option(array(typeRhhd))=?,
+        ~columnExtensions: option(array(typeColumnExtensions))=?,
         ~columnTogglingEnabled: option(bool)=?,
         children,
       ) =>
@@ -627,7 +704,15 @@ module TableColumnVisibility = {
           ~emptyMessageComponent?,
           ~onHiddenColumnNamesChange?,
           ~messages=?convertMessages(messages),
-          ~columnExtensions?,
+          ~columnExtensions=?
+            Js.Option.map(
+              (. v) =>
+                Js.Array.map(
+                  item => toJsUnsafe(convertColumnExtensions(item)),
+                  v,
+                ),
+              columnExtensions,
+            ),
           ~columnTogglingEnabled=?
             Js.Option.map(
               (. v) => Js.Boolean.to_js_boolean(v),
@@ -641,19 +726,13 @@ module TableColumnVisibility = {
 
 module TableEditColumn = {
   [@bs.deriving jsConverter]
-  type align_rbgp = [
+  type align = [
     | [@bs.as "left"] `Left
     | [@bs.as "right"] `Right
     | [@bs.as "center"] `Center
   ];
   [@bs.deriving jsConverter]
-  type align_rw5l = [
-    | [@bs.as "left"] `Left
-    | [@bs.as "right"] `Right
-    | [@bs.as "center"] `Center
-  ];
-  [@bs.deriving jsConverter]
-  type id_rpba = [
+  type id = [
     | [@bs.as "add"] `Add
     | [@bs.as "edit"] `Edit
     | [@bs.as "delete"] `Delete
@@ -671,7 +750,7 @@ module TableEditColumn = {
       ~cancelCommand: string=?,
       unit
     ) =>
-    _ =
+    typeMessages =
     "";
   [@bs.get_index] external getFromMessages : (typeMessages, string) => 'a = "";
   let convertMessages = (madeObj: option(typeMessages)) => {
@@ -681,27 +760,27 @@ module TableEditColumn = {
       Js.Dict.set(
         returnObj,
         "addCommand",
-        getFromMessages(madeObj, "addCommand"),
+        toJsUnsafe(getFromMessages(madeObj, "addCommand")),
       );
       Js.Dict.set(
         returnObj,
         "editCommand",
-        getFromMessages(madeObj, "editCommand"),
+        toJsUnsafe(getFromMessages(madeObj, "editCommand")),
       );
       Js.Dict.set(
         returnObj,
         "deleteCommand",
-        getFromMessages(madeObj, "deleteCommand"),
+        toJsUnsafe(getFromMessages(madeObj, "deleteCommand")),
       );
       Js.Dict.set(
         returnObj,
         "commitCommand",
-        getFromMessages(madeObj, "commitCommand"),
+        toJsUnsafe(getFromMessages(madeObj, "commitCommand")),
       );
       Js.Dict.set(
         returnObj,
         "cancelCommand",
-        getFromMessages(madeObj, "cancelCommand"),
+        toJsUnsafe(getFromMessages(madeObj, "cancelCommand")),
       );
       ();
     | None => ()
@@ -711,20 +790,20 @@ module TableEditColumn = {
   [@bs.obj]
   external makeProps :
     (
-      ~cellComponent: 'any_rvk8=?,
-      ~headerCellComponent: 'any_rw0a=?,
-      ~commandComponent: 'any_rauk=?,
+      ~cellComponent: 'any_res5=?,
+      ~headerCellComponent: 'any_rsmy=?,
+      ~commandComponent: 'any_rz2e=?,
       ~showAddCommand: Js.boolean=?,
       ~showEditCommand: Js.boolean=?,
       ~showDeleteCommand: Js.boolean=?,
-      ~width: 'union_rb0s=?,
-      ~messages: 'any_r9ev=?,
+      ~width: 'union_rhcf=?,
+      ~messages: 'any_r19r=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-grid-bootstrap4/TableEditColumn"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-grid-bootstrap4"]
+  external reactClass : ReasonReact.reactClass = "TableEditColumn";
   let make =
       (
         ~cellComponent:
@@ -736,7 +815,7 @@ module TableEditColumn = {
                  "key": string,
                  "type": string,
                  "rowId": [ | `Int(int) | `Float(float) | `String(string)],
-                 "row": 'any_r77b,
+                 "row": 'any_rka8,
                  "height": [ | `Int(int) | `Float(float)],
                },
                "tableColumn": {
@@ -747,14 +826,14 @@ module TableEditColumn = {
                    .
                    "name": string,
                    "title": string,
-                   "getCellValue": ('any_r9ru, string) => 'any_r379,
+                   "getCellValue": ('any_r7l6, string) => 'any_rzwq,
                  },
                  "width": [ | `Int(int) | `Float(float)],
-                 "align": align_rbgp,
+                 "align": align,
                },
                "style": Js.t({..}),
                "colSpan": [ | `Int(int) | `Float(float)],
-               "row": 'any_ravr,
+               "row": 'any_r8y4,
                "children": ReasonReact.reactElement,
              } =>
              ReasonReact.reactElement,
@@ -768,7 +847,7 @@ module TableEditColumn = {
                  "key": string,
                  "type": string,
                  "rowId": [ | `Int(int) | `Float(float) | `String(string)],
-                 "row": 'any_rl3j,
+                 "row": 'any_rhd0,
                  "height": [ | `Int(int) | `Float(float)],
                },
                "tableColumn": {
@@ -779,10 +858,10 @@ module TableEditColumn = {
                    .
                    "name": string,
                    "title": string,
-                   "getCellValue": ('any_r6y1, string) => 'any_r7g5,
+                   "getCellValue": ('any_rebe, string) => 'any_r01j,
                  },
                  "width": [ | `Int(int) | `Float(float)],
-                 "align": align_rw5l,
+                 "align": align,
                },
                "style": Js.t({..}),
                "colSpan": [ | `Int(int) | `Float(float)],
@@ -794,7 +873,7 @@ module TableEditColumn = {
            option(
              {
                .
-               "id": id_rpba,
+               "id": id,
                "text": string,
                "onExecute": unit => unit,
              } =>
@@ -839,7 +918,7 @@ module TableEditColumn = {
 
 module TableEditRow = {
   [@bs.deriving jsConverter]
-  type align_rki5 = [
+  type align = [
     | [@bs.as "left"] `Left
     | [@bs.as "right"] `Right
     | [@bs.as "center"] `Center
@@ -847,15 +926,15 @@ module TableEditRow = {
   [@bs.obj]
   external makeProps :
     (
-      ~rowHeight: 'number_1=?,
-      ~cellComponent: 'any_rg9a=?,
-      ~rowComponent: 'any_rtqc=?,
+      ~rowHeight: 'number_d=?,
+      ~cellComponent: 'any_rm3t=?,
+      ~rowComponent: 'any_rm7o=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-grid-bootstrap4/TableEditRow"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-grid-bootstrap4"]
+  external reactClass : ReasonReact.reactClass = "TableEditRow";
   let make =
       (
         ~rowHeight: option([ | `Int(int) | `Float(float)])=?,
@@ -868,7 +947,7 @@ module TableEditRow = {
                  "key": string,
                  "type": string,
                  "rowId": [ | `Int(int) | `Float(float) | `String(string)],
-                 "row": 'any_rljf,
+                 "row": 'any_rgex,
                  "height": [ | `Int(int) | `Float(float)],
                },
                "tableColumn": {
@@ -879,23 +958,23 @@ module TableEditRow = {
                    .
                    "name": string,
                    "title": string,
-                   "getCellValue": ('any_ru7e, string) => 'any_rw7r,
+                   "getCellValue": ('any_rycv, string) => 'any_r1rw,
                  },
                  "width": [ | `Int(int) | `Float(float)],
-                 "align": align_rki5,
+                 "align": align,
                },
                "style": Js.t({..}),
                "colSpan": [ | `Int(int) | `Float(float)],
-               "row": 'any_r1up,
+               "row": 'any_ryz5,
                "column": {
                  .
                  "name": string,
                  "title": string,
-                 "getCellValue": ('any_ruma, string) => 'any_r58c,
+                 "getCellValue": ('any_rug0, string) => 'any_r1jq,
                },
-               "value": 'any_rvqk,
+               "value": 'any_rfm2,
                "editingEnabled": bool,
-               "onValueChange": 'any_rul2 => unit,
+               "onValueChange": 'any_r0hc => unit,
              } =>
              ReasonReact.reactElement,
            )=?,
@@ -908,12 +987,12 @@ module TableEditRow = {
                  "key": string,
                  "type": string,
                  "rowId": [ | `Int(int) | `Float(float) | `String(string)],
-                 "row": 'any_rj16,
+                 "row": 'any_r3dk,
                  "height": [ | `Int(int) | `Float(float)],
                },
                "children": ReasonReact.reactElement,
                "style": Js.t({..}),
-               "row": 'any_r1lj,
+               "row": 'any_reps,
              } =>
              ReasonReact.reactElement,
            )=?,
@@ -935,7 +1014,8 @@ module TableEditRow = {
 module TableFilterRow = {
   type typeMessages;
   [@bs.obj]
-  external makeMessages : (~filterPlaceholder: string=?, unit) => _ = "";
+  external makeMessages : (~filterPlaceholder: string=?, unit) => typeMessages =
+    "";
   [@bs.get_index] external getFromMessages : (typeMessages, string) => 'a = "";
   let convertMessages = (madeObj: option(typeMessages)) => {
     let returnObj: Js.Dict.t(string) = Js.Dict.empty();
@@ -944,7 +1024,7 @@ module TableFilterRow = {
       Js.Dict.set(
         returnObj,
         "filterPlaceholder",
-        getFromMessages(madeObj, "filterPlaceholder"),
+        toJsUnsafe(getFromMessages(madeObj, "filterPlaceholder")),
       );
       ();
     | None => ()
@@ -952,7 +1032,7 @@ module TableFilterRow = {
     Some(returnObj);
   };
   [@bs.deriving jsConverter]
-  type align_ro1z = [
+  type align = [
     | [@bs.as "left"] `Left
     | [@bs.as "right"] `Right
     | [@bs.as "center"] `Center
@@ -960,16 +1040,16 @@ module TableFilterRow = {
   [@bs.obj]
   external makeProps :
     (
-      ~rowHeight: 'number_1=?,
-      ~messages: 'any_r071=?,
-      ~cellComponent: 'any_r5wc=?,
-      ~rowComponent: 'any_rzk4=?,
+      ~rowHeight: 'number_k=?,
+      ~messages: 'any_rxuc=?,
+      ~cellComponent: 'any_rbyr=?,
+      ~rowComponent: 'any_rfq2=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-grid-bootstrap4/TableFilterRow"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-grid-bootstrap4"]
+  external reactClass : ReasonReact.reactClass = "TableFilterRow";
   let make =
       (
         ~rowHeight: option([ | `Int(int) | `Float(float)])=?,
@@ -983,7 +1063,7 @@ module TableFilterRow = {
                  "key": string,
                  "type": string,
                  "rowId": [ | `Int(int) | `Float(float) | `String(string)],
-                 "row": 'any_rhin,
+                 "row": 'any_rbbq,
                  "height": [ | `Int(int) | `Float(float)],
                },
                "tableColumn": {
@@ -994,10 +1074,10 @@ module TableFilterRow = {
                    .
                    "name": string,
                    "title": string,
-                   "getCellValue": ('any_rtkq, string) => 'any_rhnm,
+                   "getCellValue": ('any_r2c0, string) => 'any_rj7t,
                  },
                  "width": [ | `Int(int) | `Float(float)],
-                 "align": align_ro1z,
+                 "align": align,
                },
                "style": Js.t({..}),
                "colSpan": [ | `Int(int) | `Float(float)],
@@ -1017,7 +1097,7 @@ module TableFilterRow = {
                  .
                  "name": string,
                  "title": string,
-                 "getCellValue": ('any_rzc0, string) => 'any_rxp0,
+                 "getCellValue": ('any_ryn4, string) => 'any_rfbw,
                },
                "filteringEnabled": bool,
                "getMessage": string => string,
@@ -1043,48 +1123,53 @@ module TableFilterRow = {
 
 module TableGroupRow = {
   [@bs.deriving jsConverter]
-  type align_ra97 = [
+  type align = [
     | [@bs.as "left"] `Left
     | [@bs.as "right"] `Right
     | [@bs.as "center"] `Center
   ];
-  [@bs.deriving jsConverter]
-  type align_ro3q = [
-    | [@bs.as "left"] `Left
-    | [@bs.as "right"] `Right
-    | [@bs.as "center"] `Center
-  ];
-  type typeR5if;
+  type typeColumnExtensions;
   [@bs.obj]
-  external makeR5if :
-    (~columnName: string, ~showWhenGrouped: Js.boolean=?, unit) => _ =
+  external makeColumnExtensions :
+    (~columnName: string, ~showWhenGrouped: Js.boolean=?, unit) =>
+    typeColumnExtensions =
     "";
-  [@bs.get_index] external getFromR5if : (typeR5if, string) => 'a = "";
-  let convertR5if = (madeObj: typeR5if) => {
+  [@bs.get_index]
+  external getFromColumnExtensions : (typeColumnExtensions, string) => 'a = "";
+  let convertColumnExtensions = (madeObj: typeColumnExtensions) => {
     let returnObj: Js.Dict.t(string) = Js.Dict.empty();
-    Js.Dict.set(returnObj, "columnName", getFromR5if(madeObj, "columnName"));
+    Js.Dict.set(
+      returnObj,
+      "columnName",
+      toJsUnsafe(getFromColumnExtensions(madeObj, "columnName")),
+    );
     Js.Dict.set(
       returnObj,
       "showWhenGrouped",
-      getFromR5if(madeObj, "showWhenGrouped"),
+      toJsUnsafe(
+        Js.Option.map(
+          (. v) => Js.Boolean.to_js_boolean(v),
+          getFromColumnExtensions(madeObj, "showWhenGrouped"),
+        ),
+      ),
     );
     returnObj;
   };
   [@bs.obj]
   external makeProps :
     (
-      ~cellComponent: 'any_r8e6=?,
-      ~rowComponent: 'any_rhhd=?,
-      ~indentCellComponent: 'any_rue7=?,
-      ~indentColumnWidth: 'number_v=?,
+      ~cellComponent: 'any_reej=?,
+      ~rowComponent: 'any_rl6k=?,
+      ~indentCellComponent: 'any_rwnq=?,
+      ~indentColumnWidth: 'number_b=?,
       ~showColumnsWhenGrouped: Js.boolean=?,
-      ~columnExtensions: array(typeR5if)=?,
+      ~columnExtensions: array(typeColumnExtensions)=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-grid-bootstrap4/TableGroupRow"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-grid-bootstrap4"]
+  external reactClass : ReasonReact.reactClass = "TableGroupRow";
   let make =
       (
         ~cellComponent:
@@ -1096,7 +1181,7 @@ module TableGroupRow = {
                  "key": string,
                  "type": string,
                  "rowId": [ | `Int(int) | `Float(float) | `String(string)],
-                 "row": 'any_rlaj,
+                 "row": 'any_rqxg,
                  "height": [ | `Int(int) | `Float(float)],
                },
                "tableColumn": {
@@ -1107,23 +1192,23 @@ module TableGroupRow = {
                    .
                    "name": string,
                    "title": string,
-                   "getCellValue": ('any_rkk0, string) => 'any_rxyd,
+                   "getCellValue": ('any_rwce, string) => 'any_r7t6,
                  },
                  "width": [ | `Int(int) | `Float(float)],
-                 "align": align_ra97,
+                 "align": align,
                },
                "style": Js.t({..}),
                "colSpan": [ | `Int(int) | `Float(float)],
                "row": {
                  .
                  "key": [ | `Int(int) | `Float(float) | `String(string)],
-                 "value": 'any_r3o2,
+                 "value": 'any_ri19,
                },
                "column": {
                  .
                  "name": string,
                  "title": string,
-                 "getCellValue": ('any_r91t, string) => 'any_ro9o,
+                 "getCellValue": ('any_ruka, string) => 'any_rn30,
                },
                "expanded": bool,
                "onToggle": unit => unit,
@@ -1139,7 +1224,7 @@ module TableGroupRow = {
                  "key": string,
                  "type": string,
                  "rowId": [ | `Int(int) | `Float(float) | `String(string)],
-                 "row": 'any_rwh4,
+                 "row": 'any_r0dg,
                  "height": [ | `Int(int) | `Float(float)],
                },
                "children": ReasonReact.reactElement,
@@ -1147,7 +1232,7 @@ module TableGroupRow = {
                "row": {
                  .
                  "key": [ | `Int(int) | `Float(float) | `String(string)],
-                 "value": 'any_rpmb,
+                 "value": 'any_r4ih,
                },
              } =>
              ReasonReact.reactElement,
@@ -1161,7 +1246,7 @@ module TableGroupRow = {
                  "key": string,
                  "type": string,
                  "rowId": [ | `Int(int) | `Float(float) | `String(string)],
-                 "row": 'any_r9ay,
+                 "row": 'any_r99l,
                  "height": [ | `Int(int) | `Float(float)],
                },
                "tableColumn": {
@@ -1172,25 +1257,25 @@ module TableGroupRow = {
                    .
                    "name": string,
                    "title": string,
-                   "getCellValue": ('any_rhi0, string) => 'any_rox7,
+                   "getCellValue": ('any_ror6, string) => 'any_ri4s,
                  },
                  "width": [ | `Int(int) | `Float(float)],
-                 "align": align_ro3q,
+                 "align": align,
                },
                "style": Js.t({..}),
                "colSpan": [ | `Int(int) | `Float(float)],
                "row": {
                  .
                  "key": [ | `Int(int) | `Float(float) | `String(string)],
-                 "value": 'any_ru1c,
+                 "value": 'any_rj48,
                },
-               "column": 'any_rbpe,
+               "column": 'any_r4gw,
              } =>
              ReasonReact.reactElement,
            )=?,
         ~indentColumnWidth: option([ | `Int(int) | `Float(float)])=?,
         ~showColumnsWhenGrouped: option(bool)=?,
-        ~columnExtensions: option(array(typeR5if))=?,
+        ~columnExtensions: option(array(typeColumnExtensions))=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -1207,7 +1292,15 @@ module TableGroupRow = {
               (. v) => Js.Boolean.to_js_boolean(v),
               showColumnsWhenGrouped,
             ),
-          ~columnExtensions?,
+          ~columnExtensions=?
+            Js.Option.map(
+              (. v) =>
+                Js.Array.map(
+                  item => toJsUnsafe(convertColumnExtensions(item)),
+                  v,
+                ),
+              columnExtensions,
+            ),
           (),
         ),
       children,
@@ -1216,20 +1309,18 @@ module TableGroupRow = {
 
 module TableHeaderRow = {
   [@bs.deriving jsConverter]
-  type align_rwo8 = [
+  type align = [
     | [@bs.as "left"] `Left
     | [@bs.as "right"] `Right
     | [@bs.as "center"] `Center
   ];
   [@bs.deriving jsConverter]
-  type sortingDirection_rse4 = [
-    | [@bs.as "asc"] `Asc
-    | [@bs.as "desc"] `Desc
-  ];
+  type sortingDirection = [ | [@bs.as "asc"] `Asc | [@bs.as "desc"] `Desc];
   [@bs.deriving jsConverter]
-  type rve5_r93u = [ | [@bs.as "asc"] `Asc | [@bs.as "desc"] `Desc];
+  type r90g = [ | [@bs.as "asc"] `Asc | [@bs.as "desc"] `Desc];
   type typeMessages;
-  [@bs.obj] external makeMessages : (~sortingHint: string=?, unit) => _ = "";
+  [@bs.obj]
+  external makeMessages : (~sortingHint: string=?, unit) => typeMessages = "";
   [@bs.get_index] external getFromMessages : (typeMessages, string) => 'a = "";
   let convertMessages = (madeObj: option(typeMessages)) => {
     let returnObj: Js.Dict.t(string) = Js.Dict.empty();
@@ -1238,7 +1329,7 @@ module TableHeaderRow = {
       Js.Dict.set(
         returnObj,
         "sortingHint",
-        getFromMessages(madeObj, "sortingHint"),
+        toJsUnsafe(getFromMessages(madeObj, "sortingHint")),
       );
       ();
     | None => ()
@@ -1250,15 +1341,15 @@ module TableHeaderRow = {
     (
       ~showSortingControls: Js.boolean=?,
       ~showGroupingControls: Js.boolean=?,
-      ~cellComponent: 'any_r8gr=?,
-      ~rowComponent: 'any_raaz=?,
-      ~messages: 'any_rksd=?,
+      ~cellComponent: 'any_rsde=?,
+      ~rowComponent: 'any_rt0x=?,
+      ~messages: 'any_rkih=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-grid-bootstrap4/TableHeaderRow"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-grid-bootstrap4"]
+  external reactClass : ReasonReact.reactClass = "TableHeaderRow";
   let make =
       (
         ~showSortingControls: option(bool)=?,
@@ -1272,7 +1363,7 @@ module TableHeaderRow = {
                  "key": string,
                  "type": string,
                  "rowId": [ | `Int(int) | `Float(float) | `String(string)],
-                 "row": 'any_r17b,
+                 "row": 'any_rx5b,
                  "height": [ | `Int(int) | `Float(float)],
                },
                "tableColumn": {
@@ -1283,10 +1374,10 @@ module TableHeaderRow = {
                    .
                    "name": string,
                    "title": string,
-                   "getCellValue": ('any_rjrk, string) => 'any_rv90,
+                   "getCellValue": ('any_rvob, string) => 'any_r3f5,
                  },
                  "width": [ | `Int(int) | `Float(float)],
-                 "align": align_rwo8,
+                 "align": align,
                },
                "style": Js.t({..}),
                "colSpan": [ | `Int(int) | `Float(float)],
@@ -1294,15 +1385,15 @@ module TableHeaderRow = {
                  .
                  "name": string,
                  "title": string,
-                 "getCellValue": ('any_rk3y, string) => 'any_r5pw,
+                 "getCellValue": ('any_rljl, string) => 'any_rrqa,
                },
                "showSortingControls": bool,
                "sortingEnabled": bool,
-               "sortingDirection": sortingDirection_rse4,
+               "sortingDirection": sortingDirection,
                "onSort":
                  {
                    .
-                   "direction": [ | `Any('any_re43) | `Enum(rve5_r93u)],
+                   "direction": [ | `Any('any_rej3) | `Enum(r90g)],
                    "keepOther": bool,
                  } =>
                  unit,
@@ -1310,8 +1401,8 @@ module TableHeaderRow = {
                "groupingEnabled": bool,
                "onGroup": unit => unit,
                "resizingEnabled": bool,
-               "onWidthChange": 'any_rsg3 => unit,
-               "onWidthDraft": 'any_rv4y => unit,
+               "onWidthChange": 'any_rdp1 => unit,
+               "onWidthDraft": 'any_rkrb => unit,
                "onWidthDraftCancel": unit => unit,
                "draggingEnabled": bool,
                "getMessage": string => string,
@@ -1347,13 +1438,7 @@ module TableHeaderRow = {
 
 module TableRowDetail = {
   [@bs.deriving jsConverter]
-  type align_rs2b = [
-    | [@bs.as "left"] `Left
-    | [@bs.as "right"] `Right
-    | [@bs.as "center"] `Center
-  ];
-  [@bs.deriving jsConverter]
-  type align_r7o6 = [
+  type align = [
     | [@bs.as "left"] `Left
     | [@bs.as "right"] `Right
     | [@bs.as "center"] `Center
@@ -1361,22 +1446,22 @@ module TableRowDetail = {
   [@bs.obj]
   external makeProps :
     (
-      ~contentComponent: 'any_ros2=?,
-      ~toggleCellComponent: 'any_r3jh=?,
-      ~cellComponent: 'any_r8ig=?,
-      ~rowComponent: 'any_ru8y=?,
-      ~toggleColumnWidth: 'number_w=?,
-      ~rowHeight: 'number_z=?,
+      ~contentComponent: 'any_r375=?,
+      ~toggleCellComponent: 'any_rusi=?,
+      ~cellComponent: 'any_rken=?,
+      ~rowComponent: 'any_rs8i=?,
+      ~toggleColumnWidth: 'number_i=?,
+      ~rowHeight: 'number_l=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-grid-bootstrap4/TableRowDetail"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-grid-bootstrap4"]
+  external reactClass : ReasonReact.reactClass = "TableRowDetail";
   let make =
       (
         ~contentComponent:
-           option({. "row": 'any_r5ub} => ReasonReact.reactElement)=?,
+           option({. "row": 'any_re89} => ReasonReact.reactElement)=?,
         ~toggleCellComponent:
            option(
              {
@@ -1386,7 +1471,7 @@ module TableRowDetail = {
                  "key": string,
                  "type": string,
                  "rowId": [ | `Int(int) | `Float(float) | `String(string)],
-                 "row": 'any_rmo1,
+                 "row": 'any_rb62,
                  "height": [ | `Int(int) | `Float(float)],
                },
                "tableColumn": {
@@ -1397,14 +1482,14 @@ module TableRowDetail = {
                    .
                    "name": string,
                    "title": string,
-                   "getCellValue": ('any_rdls, string) => 'any_rn1c,
+                   "getCellValue": ('any_rg78, string) => 'any_rrxm,
                  },
                  "width": [ | `Int(int) | `Float(float)],
-                 "align": align_rs2b,
+                 "align": align,
                },
                "style": Js.t({..}),
                "colSpan": [ | `Int(int) | `Float(float)],
-               "row": 'any_r15a,
+               "row": 'any_r4yb,
                "expanded": bool,
                "onToggle": unit => unit,
              } =>
@@ -1419,7 +1504,7 @@ module TableRowDetail = {
                  "key": string,
                  "type": string,
                  "rowId": [ | `Int(int) | `Float(float) | `String(string)],
-                 "row": 'any_r1jo,
+                 "row": 'any_r3tu,
                  "height": [ | `Int(int) | `Float(float)],
                },
                "tableColumn": {
@@ -1430,14 +1515,14 @@ module TableRowDetail = {
                    .
                    "name": string,
                    "title": string,
-                   "getCellValue": ('any_r2hd, string) => 'any_rwyg,
+                   "getCellValue": ('any_rddy, string) => 'any_rz3y,
                  },
                  "width": [ | `Int(int) | `Float(float)],
-                 "align": align_r7o6,
+                 "align": align,
                },
                "style": Js.t({..}),
                "colSpan": [ | `Int(int) | `Float(float)],
-               "row": 'any_rr9q,
+               "row": 'any_r0n2,
                "children": ReasonReact.reactElement,
              } =>
              ReasonReact.reactElement,
@@ -1451,12 +1536,12 @@ module TableRowDetail = {
                  "key": string,
                  "type": string,
                  "rowId": [ | `Int(int) | `Float(float) | `String(string)],
-                 "row": 'any_rpjg,
+                 "row": 'any_rsd0,
                  "height": [ | `Int(int) | `Float(float)],
                },
                "children": ReasonReact.reactElement,
                "style": Js.t({..}),
-               "row": 'any_rblo,
+               "row": 'any_r58c,
              } =>
              ReasonReact.reactElement,
            )=?,
@@ -1483,13 +1568,7 @@ module TableRowDetail = {
 
 module TableSelection = {
   [@bs.deriving jsConverter]
-  type align_reds = [
-    | [@bs.as "left"] `Left
-    | [@bs.as "right"] `Right
-    | [@bs.as "center"] `Center
-  ];
-  [@bs.deriving jsConverter]
-  type align_rtzz = [
+  type align = [
     | [@bs.as "left"] `Left
     | [@bs.as "right"] `Right
     | [@bs.as "center"] `Center
@@ -1497,20 +1576,20 @@ module TableSelection = {
   [@bs.obj]
   external makeProps :
     (
-      ~headerCellComponent: 'any_rgux=?,
-      ~cellComponent: 'any_rlrl=?,
-      ~rowComponent: 'any_r7l9=?,
+      ~headerCellComponent: 'any_r7c6=?,
+      ~cellComponent: 'any_ruho=?,
+      ~rowComponent: 'any_rvv1=?,
       ~highlightRow: Js.boolean=?,
       ~selectByRowClick: Js.boolean=?,
       ~showSelectAll: Js.boolean=?,
       ~showSelectionColumn: Js.boolean=?,
-      ~selectionColumnWidth: 'number_1=?,
+      ~selectionColumnWidth: 'number_2=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-grid-bootstrap4/TableSelection"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-grid-bootstrap4"]
+  external reactClass : ReasonReact.reactClass = "TableSelection";
   let make =
       (
         ~headerCellComponent:
@@ -1522,7 +1601,7 @@ module TableSelection = {
                  "key": string,
                  "type": string,
                  "rowId": [ | `Int(int) | `Float(float) | `String(string)],
-                 "row": 'any_rl5s,
+                 "row": 'any_r8yk,
                  "height": [ | `Int(int) | `Float(float)],
                },
                "tableColumn": {
@@ -1533,10 +1612,10 @@ module TableSelection = {
                    .
                    "name": string,
                    "title": string,
-                   "getCellValue": ('any_r97i, string) => 'any_r7po,
+                   "getCellValue": ('any_r2zx, string) => 'any_rjt5,
                  },
                  "width": [ | `Int(int) | `Float(float)],
-                 "align": align_reds,
+                 "align": align,
                },
                "style": Js.t({..}),
                "colSpan": [ | `Int(int) | `Float(float)],
@@ -1556,7 +1635,7 @@ module TableSelection = {
                  "key": string,
                  "type": string,
                  "rowId": [ | `Int(int) | `Float(float) | `String(string)],
-                 "row": 'any_r444,
+                 "row": 'any_rcw2,
                  "height": [ | `Int(int) | `Float(float)],
                },
                "tableColumn": {
@@ -1567,20 +1646,20 @@ module TableSelection = {
                    .
                    "name": string,
                    "title": string,
-                   "getCellValue": ('any_r7ex, string) => 'any_rkc9,
+                   "getCellValue": ('any_r8e4, string) => 'any_ry37,
                  },
                  "width": [ | `Int(int) | `Float(float)],
-                 "align": align_rtzz,
+                 "align": align,
                },
                "style": Js.t({..}),
                "colSpan": [ | `Int(int) | `Float(float)],
-               "row": 'any_rq0q,
+               "row": 'any_rhg9,
                "selected": bool,
                "onToggle": unit => unit,
              } =>
              ReasonReact.reactElement,
            )=?,
-        ~rowComponent: option('any_r7l9)=?,
+        ~rowComponent: option('any_rvv1)=?,
         ~highlightRow: option(bool)=?,
         ~selectByRowClick: option(bool)=?,
         ~showSelectAll: option(bool)=?,
@@ -1625,50 +1704,61 @@ module TableSelection = {
 
 module Table = {
   [@bs.deriving jsConverter]
-  type align_rf4k = [
+  type align = [
     | [@bs.as "left"] `Left
     | [@bs.as "right"] `Right
     | [@bs.as "center"] `Center
   ];
-  [@bs.deriving jsConverter]
-  type align_rhsp = [
-    | [@bs.as "left"] `Left
-    | [@bs.as "right"] `Right
-    | [@bs.as "center"] `Center
-  ];
-  [@bs.deriving jsConverter]
-  type align_rjlg = [
-    | [@bs.as "left"] `Left
-    | [@bs.as "right"] `Right
-    | [@bs.as "center"] `Center
-  ];
-  [@bs.deriving jsConverter]
-  type align_rrhf = [
-    | [@bs.as "left"] `Left
-    | [@bs.as "right"] `Right
-    | [@bs.as "center"] `Center
-  ];
-  type typeRxbw;
+  type typeColumnExtensions;
   [@bs.obj]
-  external makeRxbw :
-    (~columnName: string, ~width: 'number_c=?, ~align: align_rrhf=?, unit) => _ =
+  external makeColumnExtensions :
+    (~columnName: string, ~width: 'number_0=?, ~align: align=?, unit) =>
+    typeColumnExtensions =
     "";
-  [@bs.get_index] external getFromRxbw : (typeRxbw, string) => 'a = "";
-  let convertRxbw = (madeObj: typeRxbw) => {
+  [@bs.get_index]
+  external getFromColumnExtensions : (typeColumnExtensions, string) => 'a = "";
+  let convertColumnExtensions = (madeObj: typeColumnExtensions) => {
     let returnObj: Js.Dict.t(string) = Js.Dict.empty();
-    Js.Dict.set(returnObj, "columnName", getFromRxbw(madeObj, "columnName"));
-    Js.Dict.set(returnObj, "width", getFromRxbw(madeObj, "width"));
-    Js.Dict.set(returnObj, "align", getFromRxbw(madeObj, "align"));
+    Js.Dict.set(
+      returnObj,
+      "columnName",
+      toJsUnsafe(getFromColumnExtensions(madeObj, "columnName")),
+    );
+    Js.Dict.set(
+      returnObj,
+      "width",
+      toJsUnsafe(
+        Js.Option.map(
+          (. v) => unwrapValue(v),
+          getFromColumnExtensions(madeObj, "width"),
+        ),
+      ),
+    );
+    Js.Dict.set(
+      returnObj,
+      "align",
+      toJsUnsafe(
+        Js.Option.map(
+          (. v) => alignToJs(v),
+          getFromColumnExtensions(madeObj, "align"),
+        ),
+      ),
+    );
     returnObj;
   };
   type typeMessages;
-  [@bs.obj] external makeMessages : (~noData: string=?, unit) => _ = "";
+  [@bs.obj]
+  external makeMessages : (~noData: string=?, unit) => typeMessages = "";
   [@bs.get_index] external getFromMessages : (typeMessages, string) => 'a = "";
   let convertMessages = (madeObj: option(typeMessages)) => {
     let returnObj: Js.Dict.t(string) = Js.Dict.empty();
     switch (madeObj) {
     | Some(madeObj) =>
-      Js.Dict.set(returnObj, "noData", getFromMessages(madeObj, "noData"));
+      Js.Dict.set(
+        returnObj,
+        "noData",
+        toJsUnsafe(getFromMessages(madeObj, "noData")),
+      );
       ();
     | None => ()
     };
@@ -1677,29 +1767,29 @@ module Table = {
   [@bs.obj]
   external makeProps :
     (
-      ~layoutComponent: 'any_r34m=?,
+      ~layoutComponent: 'any_rlmf=?,
       ~tableComponent: ReasonReact.reactElement=?,
       ~headComponent: ReasonReact.reactElement=?,
       ~bodyComponent: ReasonReact.reactElement=?,
       ~containerComponent: ReasonReact.reactElement=?,
-      ~cellComponent: 'any_rgjs=?,
-      ~rowComponent: 'any_r4rx=?,
-      ~noDataCellComponent: 'any_rj03=?,
-      ~noDataRowComponent: 'any_ris9=?,
-      ~stubCellComponent: 'any_r37f=?,
-      ~stubHeaderCellComponent: 'any_r18g=?,
-      ~columnExtensions: array(typeRxbw)=?,
-      ~messages: 'any_rtdc=?,
-      ~fixedHeaderComponent: 'any_rbr8=?,
+      ~cellComponent: 'any_rutr=?,
+      ~rowComponent: 'any_r5c0=?,
+      ~noDataCellComponent: 'any_rj4i=?,
+      ~noDataRowComponent: 'any_rhxt=?,
+      ~stubCellComponent: 'any_ra8b=?,
+      ~stubHeaderCellComponent: 'any_r0ws=?,
+      ~columnExtensions: array(typeColumnExtensions)=?,
+      ~messages: 'any_rbca=?,
+      ~fixedHeaderComponent: 'any_rbch=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-grid-bootstrap4/Table"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-grid-bootstrap4"]
+  external reactClass : ReasonReact.reactClass = "Table";
   let make =
       (
-        ~layoutComponent: option('any_r34m)=?,
+        ~layoutComponent: option('any_rlmf)=?,
         ~tableComponent: option(ReasonReact.reactElement)=?,
         ~headComponent: option(ReasonReact.reactElement)=?,
         ~bodyComponent: option(ReasonReact.reactElement)=?,
@@ -1713,7 +1803,7 @@ module Table = {
                  "key": string,
                  "type": string,
                  "rowId": [ | `Int(int) | `Float(float) | `String(string)],
-                 "row": 'any_rwih,
+                 "row": 'any_rsew,
                  "height": [ | `Int(int) | `Float(float)],
                },
                "tableColumn": {
@@ -1724,20 +1814,20 @@ module Table = {
                    .
                    "name": string,
                    "title": string,
-                   "getCellValue": ('any_rbeo, string) => 'any_rxrw,
+                   "getCellValue": ('any_ry3y, string) => 'any_ro5w,
                  },
                  "width": [ | `Int(int) | `Float(float)],
-                 "align": align_rf4k,
+                 "align": align,
                },
                "style": Js.t({..}),
                "colSpan": [ | `Int(int) | `Float(float)],
-               "value": 'any_re21,
-               "row": 'any_ri2o,
+               "value": 'any_rufo,
+               "row": 'any_rlhv,
                "column": {
                  .
                  "name": string,
                  "title": string,
-                 "getCellValue": ('any_rrb3, string) => 'any_r9ri,
+                 "getCellValue": ('any_rbxk, string) => 'any_rrqi,
                },
              } =>
              ReasonReact.reactElement,
@@ -1751,12 +1841,12 @@ module Table = {
                  "key": string,
                  "type": string,
                  "rowId": [ | `Int(int) | `Float(float) | `String(string)],
-                 "row": 'any_r6nd,
+                 "row": 'any_r5h2,
                  "height": [ | `Int(int) | `Float(float)],
                },
                "children": ReasonReact.reactElement,
                "style": Js.t({..}),
-               "row": 'any_rggf,
+               "row": 'any_rot5,
              } =>
              ReasonReact.reactElement,
            )=?,
@@ -1773,7 +1863,7 @@ module Table = {
                  "key": string,
                  "type": string,
                  "rowId": [ | `Int(int) | `Float(float) | `String(string)],
-                 "row": 'any_r15p,
+                 "row": 'any_rugb,
                  "height": [ | `Int(int) | `Float(float)],
                },
                "children": ReasonReact.reactElement,
@@ -1790,7 +1880,7 @@ module Table = {
                  "key": string,
                  "type": string,
                  "rowId": [ | `Int(int) | `Float(float) | `String(string)],
-                 "row": 'any_rauu,
+                 "row": 'any_ru2z,
                  "height": [ | `Int(int) | `Float(float)],
                },
                "tableColumn": {
@@ -1801,10 +1891,10 @@ module Table = {
                    .
                    "name": string,
                    "title": string,
-                   "getCellValue": ('any_rd61, string) => 'any_rdvy,
+                   "getCellValue": ('any_r1pf, string) => 'any_r0e4,
                  },
                  "width": [ | `Int(int) | `Float(float)],
-                 "align": align_rhsp,
+                 "align": align,
                },
                "style": Js.t({..}),
                "colSpan": [ | `Int(int) | `Float(float)],
@@ -1820,7 +1910,7 @@ module Table = {
                  "key": string,
                  "type": string,
                  "rowId": [ | `Int(int) | `Float(float) | `String(string)],
-                 "row": 'any_rxm1,
+                 "row": 'any_rho8,
                  "height": [ | `Int(int) | `Float(float)],
                },
                "tableColumn": {
@@ -1831,19 +1921,19 @@ module Table = {
                    .
                    "name": string,
                    "title": string,
-                   "getCellValue": ('any_rq89, string) => 'any_rquf,
+                   "getCellValue": ('any_rs9o, string) => 'any_rgu3,
                  },
                  "width": [ | `Int(int) | `Float(float)],
-                 "align": align_rjlg,
+                 "align": align,
                },
                "style": Js.t({..}),
                "colSpan": [ | `Int(int) | `Float(float)],
              } =>
              ReasonReact.reactElement,
            )=?,
-        ~columnExtensions: option(array(typeRxbw))=?,
+        ~columnExtensions: option(array(typeColumnExtensions))=?,
         ~messages: option(typeMessages)=?,
-        ~fixedHeaderComponent: option('any_rbr8)=?,
+        ~fixedHeaderComponent: option('any_rbch)=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -1861,7 +1951,15 @@ module Table = {
           ~noDataRowComponent?,
           ~stubCellComponent?,
           ~stubHeaderCellComponent?,
-          ~columnExtensions?,
+          ~columnExtensions=?
+            Js.Option.map(
+              (. v) =>
+                Js.Array.map(
+                  item => toJsUnsafe(convertColumnExtensions(item)),
+                  v,
+                ),
+              columnExtensions,
+            ),
           ~messages=?convertMessages(messages),
           ~fixedHeaderComponent?,
           (),
@@ -1874,14 +1972,14 @@ module Toolbar = {
   [@bs.obj]
   external makeProps :
     (
-      ~rootComponent: 'any_rnuh=?,
-      ~flexibleSpaceComponent: 'any_ranj=?,
+      ~rootComponent: 'any_rgdy=?,
+      ~flexibleSpaceComponent: 'any_r2qj=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-grid-bootstrap4/Toolbar"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-grid-bootstrap4"]
+  external reactClass : ReasonReact.reactClass = "Toolbar";
   let make =
       (
         ~rootComponent:
@@ -1889,7 +1987,7 @@ module Toolbar = {
              {. "children": ReasonReact.reactElement} =>
              ReasonReact.reactElement,
            )=?,
-        ~flexibleSpaceComponent: option('any_ranj)=?,
+        ~flexibleSpaceComponent: option('any_r2qj)=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -1901,13 +1999,18 @@ module Toolbar = {
 
 module VirtualTable = {
   type typeMessages;
-  [@bs.obj] external makeMessages : (~noData: string=?, unit) => _ = "";
+  [@bs.obj]
+  external makeMessages : (~noData: string=?, unit) => typeMessages = "";
   [@bs.get_index] external getFromMessages : (typeMessages, string) => 'a = "";
   let convertMessages = (madeObj: option(typeMessages)) => {
     let returnObj: Js.Dict.t(string) = Js.Dict.empty();
     switch (madeObj) {
     | Some(madeObj) =>
-      Js.Dict.set(returnObj, "noData", getFromMessages(madeObj, "noData"));
+      Js.Dict.set(
+        returnObj,
+        "noData",
+        toJsUnsafe(getFromMessages(madeObj, "noData")),
+      );
       ();
     | None => ()
     };
@@ -1916,15 +2019,15 @@ module VirtualTable = {
   [@bs.obj]
   external makeProps :
     (
-      ~estimatedRowHeight: 'number_k=?,
-      ~height: 'number_d=?,
-      ~messages: 'any_rnyc=?,
+      ~estimatedRowHeight: 'number_y=?,
+      ~height: 'number_0=?,
+      ~messages: 'any_rtvy=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-grid-bootstrap4/VirtualTable"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-grid-bootstrap4"]
+  external reactClass : ReasonReact.reactClass = "VirtualTable";
   let make =
       (
         ~estimatedRowHeight: option([ | `Int(int) | `Float(float)])=?,

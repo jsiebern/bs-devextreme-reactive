@@ -22,10 +22,10 @@ let unwrapValue =
 
 module Action = {
   [@bs.obj]
-  external makeProps : (~name: string, ~action: 'any_riz5, unit) => _ = "";
-  [@bs.module "@devexpress/dx-react-core/Action"]
-  external reactClass : ReasonReact.reactClass = "default";
-  let make = (~name: string, ~action: 'any_rswq => unit, children) =>
+  external makeProps : (~name: string, ~action: 'any_rz0r, unit) => _ = "";
+  [@bs.module "@devexpress/dx-react-core"]
+  external reactClass : ReasonReact.reactClass = "Action";
+  let make = (~name: string, ~action: 'any_rj7q => unit, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props=makeProps(~name, ~action, ()),
@@ -34,10 +34,10 @@ module Action = {
 };
 
 module DragDropProvider = {
-  [@bs.obj] external makeProps : (~onChange: 'any_rdc8=?, unit) => _ = "";
-  [@bs.module "@devexpress/dx-react-core/DragDropProvider"]
-  external reactClass : ReasonReact.reactClass = "default";
-  let make = (~onChange: option('any_rdc8)=?, children) =>
+  [@bs.obj] external makeProps : (~onChange: 'any_r5lf=?, unit) => _ = "";
+  [@bs.module "@devexpress/dx-react-core"]
+  external reactClass : ReasonReact.reactClass = "DragDropProvider";
+  let make = (~onChange: option('any_r5lf)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props=makeProps(~onChange?, ()),
@@ -49,22 +49,22 @@ module DragSource = {
   [@bs.obj]
   external makeProps :
     (
-      ~payload: 'any_rwv7,
-      ~onStart: 'any_rc9w=?,
-      ~onUpdate: 'any_rsr7=?,
-      ~onEnd: 'any_r8kq=?,
+      ~payload: 'any_r3hk,
+      ~onStart: 'any_rrb0=?,
+      ~onUpdate: 'any_rqeb=?,
+      ~onEnd: 'any_rpbz=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-core/DragSource"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-core"]
+  external reactClass : ReasonReact.reactClass = "DragSource";
   let make =
       (
-        ~payload: 'any_rwv7,
-        ~onStart: option('any_rc9w)=?,
-        ~onUpdate: option('any_rsr7)=?,
-        ~onEnd: option('any_r8kq)=?,
+        ~payload: 'any_r3hk,
+        ~onStart: option('any_rrb0)=?,
+        ~onUpdate: option('any_rqeb)=?,
+        ~onEnd: option('any_rpbz)=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -78,20 +78,20 @@ module Draggable = {
   [@bs.obj]
   external makeProps :
     (
-      ~onStart: 'any_refy=?,
-      ~onUpdate: 'any_rsap=?,
-      ~onEnd: 'any_rtha=?,
+      ~onStart: 'any_rro3=?,
+      ~onUpdate: 'any_rcya=?,
+      ~onEnd: 'any_rru8=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-core/Draggable"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-core"]
+  external reactClass : ReasonReact.reactClass = "Draggable";
   let make =
       (
-        ~onStart: option('any_refy)=?,
-        ~onUpdate: option('any_rsap)=?,
-        ~onEnd: option('any_rtha)=?,
+        ~onStart: option('any_rro3)=?,
+        ~onUpdate: option('any_rcya)=?,
+        ~onEnd: option('any_rru8)=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -105,22 +105,22 @@ module DropTarget = {
   [@bs.obj]
   external makeProps :
     (
-      ~onEnter: 'any_rty5=?,
-      ~onOver: 'any_rj9x=?,
-      ~onLeave: 'any_r295=?,
-      ~onDrop: 'any_rvhg=?,
+      ~onEnter: 'any_rf4m=?,
+      ~onOver: 'any_rfhd=?,
+      ~onLeave: 'any_rqrr=?,
+      ~onDrop: 'any_rf3n=?,
       unit
     ) =>
     _ =
     "";
-  [@bs.module "@devexpress/dx-react-core/DropTarget"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-core"]
+  external reactClass : ReasonReact.reactClass = "DropTarget";
   let make =
       (
-        ~onEnter: option('any_rty5)=?,
-        ~onOver: option('any_rj9x)=?,
-        ~onLeave: option('any_r295)=?,
-        ~onDrop: option('any_rvhg)=?,
+        ~onEnter: option('any_rf4m)=?,
+        ~onOver: option('any_rfhd)=?,
+        ~onLeave: option('any_rqrr)=?,
+        ~onDrop: option('any_rf3n)=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -133,15 +133,15 @@ module DropTarget = {
 module Getter = {
   [@bs.obj]
   external makeProps :
-    (~name: string, ~value: 'any_r15b=?, ~computed: 'any_rv5n=?, unit) => _ =
+    (~name: string, ~value: 'any_rg5l=?, ~computed: 'any_rxtw=?, unit) => _ =
     "";
-  [@bs.module "@devexpress/dx-react-core/Getter"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-core"]
+  external reactClass : ReasonReact.reactClass = "Getter";
   let make =
       (
         ~name: string,
-        ~value: option('any_r15b)=?,
-        ~computed: option(Js.t({..}) => 'any_ru61)=?,
+        ~value: option('any_rg5l)=?,
+        ~computed: option(Js.t({..}) => 'any_rrt0)=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -153,47 +153,75 @@ module Getter = {
 
 module PluginHost = {
   [@bs.obj] external makeProps : unit => _ = "";
-  [@bs.module "@devexpress/dx-react-core/PluginHost"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-core"]
+  external reactClass : ReasonReact.reactClass = "PluginHost";
   let make = children =>
     ReasonReact.wrapJsForReason(~reactClass, ~props=makeProps(), children);
 };
 
 module Plugin = {
-  type typeR4fp;
+  type typeDependencies;
   [@bs.obj]
-  external makeR4fp : (~name: string=?, ~optional: Js.boolean=?, unit) => _ =
+  external makeDependencies :
+    (~name: string=?, ~optional: Js.boolean=?, unit) => typeDependencies =
     "";
-  [@bs.get_index] external getFromR4fp : (typeR4fp, string) => 'a = "";
-  let convertR4fp = (madeObj: typeR4fp) => {
+  [@bs.get_index]
+  external getFromDependencies : (typeDependencies, string) => 'a = "";
+  let convertDependencies = (madeObj: typeDependencies) => {
     let returnObj: Js.Dict.t(string) = Js.Dict.empty();
-    Js.Dict.set(returnObj, "name", getFromR4fp(madeObj, "name"));
-    Js.Dict.set(returnObj, "optional", getFromR4fp(madeObj, "optional"));
+    Js.Dict.set(
+      returnObj,
+      "name",
+      toJsUnsafe(getFromDependencies(madeObj, "name")),
+    );
+    Js.Dict.set(
+      returnObj,
+      "optional",
+      toJsUnsafe(
+        Js.Option.map(
+          (. v) => Js.Boolean.to_js_boolean(v),
+          getFromDependencies(madeObj, "optional"),
+        ),
+      ),
+    );
     returnObj;
   };
   [@bs.obj]
   external makeProps :
-    (~name: string=?, ~dependencies: array(typeR4fp)=?, unit) => _ =
+    (~name: string=?, ~dependencies: array(typeDependencies)=?, unit) => _ =
     "";
-  [@bs.module "@devexpress/dx-react-core/Plugin"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-core"]
+  external reactClass : ReasonReact.reactClass = "Plugin";
   let make =
       (
         ~name: option(string)=?,
-        ~dependencies: option(array(typeR4fp))=?,
+        ~dependencies: option(array(typeDependencies))=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
-      ~props=makeProps(~name?, ~dependencies?, ()),
+      ~props=
+        makeProps(
+          ~name?,
+          ~dependencies=?
+            Js.Option.map(
+              (. v) =>
+                Js.Array.map(
+                  item => toJsUnsafe(convertDependencies(item)),
+                  v,
+                ),
+              dependencies,
+            ),
+          (),
+        ),
       children,
     );
 };
 
 module TemplateConnector = {
   [@bs.obj] external makeProps : unit => _ = "";
-  [@bs.module "@devexpress/dx-react-core/TemplateConnector"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-core"]
+  external reactClass : ReasonReact.reactClass = "TemplateConnector";
   let make = children =>
     ReasonReact.wrapJsForReason(~reactClass, ~props=makeProps(), children);
 };
@@ -202,8 +230,8 @@ module TemplatePlaceholder = {
   [@bs.obj]
   external makeProps : (~name: string=?, ~params: Js.t({..})=?, unit) => _ =
     "";
-  [@bs.module "@devexpress/dx-react-core/TemplatePlaceholder"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-core"]
+  external reactClass : ReasonReact.reactClass = "TemplatePlaceholder";
   let make =
       (~name: option(string)=?, ~params: option(Js.t({..}))=?, children) =>
     ReasonReact.wrapJsForReason(
@@ -216,13 +244,13 @@ module TemplatePlaceholder = {
 module Template = {
   [@bs.obj]
   external makeProps :
-    (~position: 'any_rvkt=?, ~name: string, ~predicate: 'any_rm28=?, unit) => _ =
+    (~position: 'any_r960=?, ~name: string, ~predicate: 'any_rqvj=?, unit) => _ =
     "";
-  [@bs.module "@devexpress/dx-react-core/Template"]
-  external reactClass : ReasonReact.reactClass = "default";
+  [@bs.module "@devexpress/dx-react-core"]
+  external reactClass : ReasonReact.reactClass = "Template";
   let make =
       (
-        ~position: option('any_rvkt)=?,
+        ~position: option('any_r960)=?,
         ~name: string,
         ~predicate: option(Js.t({..}) => bool)=?,
         children,
