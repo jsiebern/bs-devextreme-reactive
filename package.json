@@ -1,0 +1,29 @@
+{
+  "name": "@jsiebern/bs-devextreme-reactive",
+  "version": "1.1.0",
+  "description": "This library provides Reason bindings for devextreme-reactive.",
+  "keywords": [
+    "bucklescript",
+    "reason",
+    "devextreme-reactive"
+  ],
+  "homepage": "https://github.com/jsiebern/bs-devextreme-reactive",
+  "repository": "https://github.com/jsiebern/bs-devextreme-reactive",
+  "bugs": "https://github.com/jsiebern/bs-devextreme-reactive/issues",
+  "author": "Jonathan Siebern <jsiebern88@gmail.com>",
+  "license": "MIT",
+  "main": "src/Grid.re",
+  "scripts": {
+    "build": "npm link bs-platform; bsb -make-world",
+    "postinstall": "npm link bs-platform"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@devexpress/dx-react-core": "^1.1.0",
+    "@devexpress/dx-react-grid": "^1.1.0",
+    "@devexpress/dx-react-grid-bootstrap3": "^1.1.0",
+    "@devexpress/dx-react-grid-bootstrap4": "^1.1.0",
+    "@devexpress/dx-react-grid-material-ui": "^1.1.0",
+    "reason-react": "^0.3.1"
+  }
+}
