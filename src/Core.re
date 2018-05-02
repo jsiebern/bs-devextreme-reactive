@@ -22,10 +22,10 @@ let unwrapValue =
 
 module Action = {
   [@bs.obj]
-  external makeProps : (~name: string, ~action: 'any_r6xy, unit) => _ = "";
+  external makeProps : (~name: string, ~action: 'any_rra1, unit) => _ = "";
   [@bs.module "@devexpress/dx-react-core"]
   external reactClass : ReasonReact.reactClass = "Action";
-  let make = (~name: string, ~action: 'any_rp4h => unit, children) =>
+  let make = (~name: string, ~action: 'any_rwrb => unit, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props=makeProps(~name, ~action, ()),
@@ -51,7 +51,7 @@ module DragSource = {
   [@bs.obj]
   external makeProps :
     (
-      ~payload: 'any_rel3,
+      ~payload: 'any_rs9y,
       ~onStart: 'genericCallback=?,
       ~onUpdate: 'genericCallback=?,
       ~onEnd: 'genericCallback=?,
@@ -63,7 +63,7 @@ module DragSource = {
   external reactClass : ReasonReact.reactClass = "DragSource";
   let make =
       (
-        ~payload: 'any_rel3,
+        ~payload: 'any_rs9y,
         ~onStart: option('genericCallback)=?,
         ~onUpdate: option('genericCallback)=?,
         ~onEnd: option('genericCallback)=?,
@@ -135,15 +135,15 @@ module DropTarget = {
 module Getter = {
   [@bs.obj]
   external makeProps :
-    (~name: string, ~value: 'any_rq4v=?, ~computed: 'any_rc3y=?, unit) => _ =
+    (~name: string, ~value: 'any_rhq7=?, ~computed: 'any_rs2r=?, unit) => _ =
     "";
   [@bs.module "@devexpress/dx-react-core"]
   external reactClass : ReasonReact.reactClass = "Getter";
   let make =
       (
         ~name: string,
-        ~value: option('any_rq4v)=?,
-        ~computed: option(Js.t({..}) => 'any_r90e)=?,
+        ~value: option('any_rhq7)=?,
+        ~computed: option(Js.t({..}) => 'any_rz3n)=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -260,7 +260,7 @@ module Template = {
     (
       ~position: 'genericCallback=?,
       ~name: string,
-      ~predicate: 'any_rpvf=?,
+      ~predicate: 'any_re9e=?,
       unit
     ) =>
     _ =
