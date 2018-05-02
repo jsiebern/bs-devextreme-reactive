@@ -1,0 +1,7 @@
+examples
+lib
+.git
+node_modules
+.merlin
+.gitignore
+.idea

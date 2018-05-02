@@ -3,7 +3,7 @@ external toJsUnsafe : 'a => 'b = "%identity";
 let unwrapValue =
   fun
   | `String(s) => toJsUnsafe(s)
-  | `Bool(b) => toJsUnsafe(Js.Boolean.to_js_boolean(b))
+  | `Bool(b) => toJsUnsafe(b)
   | `Float(f) => toJsUnsafe(f)
   | `Int(i) => toJsUnsafe(i)
   | `Date(d) => toJsUnsafe(d)
@@ -22,10 +22,10 @@ let unwrapValue =
 
 module Action = {
   [@bs.obj]
-  external makeProps : (~name: string, ~action: 'any_rz0r, unit) => _ = "";
+  external makeProps : (~name: string, ~action: 'any_r6xy, unit) => _ = "";
   [@bs.module "@devexpress/dx-react-core"]
   external reactClass : ReasonReact.reactClass = "Action";
-  let make = (~name: string, ~action: 'any_rj7q => unit, children) =>
+  let make = (~name: string, ~action: 'any_rp4h => unit, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props=makeProps(~name, ~action, ()),
@@ -34,10 +34,12 @@ module Action = {
 };
 
 module DragDropProvider = {
-  [@bs.obj] external makeProps : (~onChange: 'any_r5lf=?, unit) => _ = "";
+  [@bs.obj]
+  external makeProps : (~onChange: ReactEventRe.Form.t => unit=?, unit) => _ =
+    "";
   [@bs.module "@devexpress/dx-react-core"]
   external reactClass : ReasonReact.reactClass = "DragDropProvider";
-  let make = (~onChange: option('any_r5lf)=?, children) =>
+  let make = (~onChange: option(ReactEventRe.Form.t => unit)=?, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props=makeProps(~onChange?, ()),
@@ -49,10 +51,10 @@ module DragSource = {
   [@bs.obj]
   external makeProps :
     (
-      ~payload: 'any_r3hk,
-      ~onStart: 'any_rrb0=?,
-      ~onUpdate: 'any_rqeb=?,
-      ~onEnd: 'any_rpbz=?,
+      ~payload: 'any_rel3,
+      ~onStart: 'genericCallback=?,
+      ~onUpdate: 'genericCallback=?,
+      ~onEnd: 'genericCallback=?,
       unit
     ) =>
     _ =
@@ -61,10 +63,10 @@ module DragSource = {
   external reactClass : ReasonReact.reactClass = "DragSource";
   let make =
       (
-        ~payload: 'any_r3hk,
-        ~onStart: option('any_rrb0)=?,
-        ~onUpdate: option('any_rqeb)=?,
-        ~onEnd: option('any_rpbz)=?,
+        ~payload: 'any_rel3,
+        ~onStart: option('genericCallback)=?,
+        ~onUpdate: option('genericCallback)=?,
+        ~onEnd: option('genericCallback)=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -78,9 +80,9 @@ module Draggable = {
   [@bs.obj]
   external makeProps :
     (
-      ~onStart: 'any_rro3=?,
-      ~onUpdate: 'any_rcya=?,
-      ~onEnd: 'any_rru8=?,
+      ~onStart: 'genericCallback=?,
+      ~onUpdate: 'genericCallback=?,
+      ~onEnd: 'genericCallback=?,
       unit
     ) =>
     _ =
@@ -89,9 +91,9 @@ module Draggable = {
   external reactClass : ReasonReact.reactClass = "Draggable";
   let make =
       (
-        ~onStart: option('any_rro3)=?,
-        ~onUpdate: option('any_rcya)=?,
-        ~onEnd: option('any_rru8)=?,
+        ~onStart: option('genericCallback)=?,
+        ~onUpdate: option('genericCallback)=?,
+        ~onEnd: option('genericCallback)=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -105,10 +107,10 @@ module DropTarget = {
   [@bs.obj]
   external makeProps :
     (
-      ~onEnter: 'any_rf4m=?,
-      ~onOver: 'any_rfhd=?,
-      ~onLeave: 'any_rqrr=?,
-      ~onDrop: 'any_rf3n=?,
+      ~onEnter: ReactEventRe.Synthetic.t => unit=?,
+      ~onOver: 'genericCallback=?,
+      ~onLeave: 'genericCallback=?,
+      ~onDrop: ReactEventRe.Mouse.t => unit=?,
       unit
     ) =>
     _ =
@@ -117,10 +119,10 @@ module DropTarget = {
   external reactClass : ReasonReact.reactClass = "DropTarget";
   let make =
       (
-        ~onEnter: option('any_rf4m)=?,
-        ~onOver: option('any_rfhd)=?,
-        ~onLeave: option('any_rqrr)=?,
-        ~onDrop: option('any_rf3n)=?,
+        ~onEnter: option(ReactEventRe.Synthetic.t => unit)=?,
+        ~onOver: option('genericCallback)=?,
+        ~onLeave: option('genericCallback)=?,
+        ~onDrop: option(ReactEventRe.Mouse.t => unit)=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -133,15 +135,15 @@ module DropTarget = {
 module Getter = {
   [@bs.obj]
   external makeProps :
-    (~name: string, ~value: 'any_rg5l=?, ~computed: 'any_rxtw=?, unit) => _ =
+    (~name: string, ~value: 'any_rq4v=?, ~computed: 'any_rc3y=?, unit) => _ =
     "";
   [@bs.module "@devexpress/dx-react-core"]
   external reactClass : ReasonReact.reactClass = "Getter";
   let make =
       (
         ~name: string,
-        ~value: option('any_rg5l)=?,
-        ~computed: option(Js.t({..}) => 'any_rrt0)=?,
+        ~value: option('any_rq4v)=?,
+        ~computed: option(Js.t({..}) => 'any_r90e)=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -163,7 +165,7 @@ module Plugin = {
   type typeDependencies;
   [@bs.obj]
   external makeDependencies :
-    (~name: string=?, ~optional: Js.boolean=?, unit) => typeDependencies =
+    (~name: string=?, ~optional: bool=?, unit) => typeDependencies =
     "";
   [@bs.get_index]
   external getFromDependencies : (typeDependencies, string) => 'a = "";
@@ -177,12 +179,7 @@ module Plugin = {
     Js.Dict.set(
       returnObj,
       "optional",
-      toJsUnsafe(
-        Js.Option.map(
-          (. v) => Js.Boolean.to_js_boolean(v),
-          getFromDependencies(madeObj, "optional"),
-        ),
-      ),
+      toJsUnsafe(getFromDependencies(madeObj, "optional")),
     );
     returnObj;
   };
@@ -218,6 +215,22 @@ module Plugin = {
     );
 };
 
+module RefHolder = {
+  [@bs.obj] external makeProps : unit => _ = "";
+  [@bs.module "@devexpress/dx-react-core"]
+  external reactClass : ReasonReact.reactClass = "RefHolder";
+  let make = children =>
+    ReasonReact.wrapJsForReason(~reactClass, ~props=makeProps(), children);
+};
+
+module Sizer = {
+  [@bs.obj] external makeProps : unit => _ = "";
+  [@bs.module "@devexpress/dx-react-core"]
+  external reactClass : ReasonReact.reactClass = "Sizer";
+  let make = children =>
+    ReasonReact.wrapJsForReason(~reactClass, ~props=makeProps(), children);
+};
+
 module TemplateConnector = {
   [@bs.obj] external makeProps : unit => _ = "";
   [@bs.module "@devexpress/dx-react-core"]
@@ -244,13 +257,19 @@ module TemplatePlaceholder = {
 module Template = {
   [@bs.obj]
   external makeProps :
-    (~position: 'any_r960=?, ~name: string, ~predicate: 'any_rqvj=?, unit) => _ =
+    (
+      ~position: 'genericCallback=?,
+      ~name: string,
+      ~predicate: 'any_rpvf=?,
+      unit
+    ) =>
+    _ =
     "";
   [@bs.module "@devexpress/dx-react-core"]
   external reactClass : ReasonReact.reactClass = "Template";
   let make =
       (
-        ~position: option('any_r960)=?,
+        ~position: option('genericCallback)=?,
         ~name: string,
         ~predicate: option(Js.t({..}) => bool)=?,
         children,

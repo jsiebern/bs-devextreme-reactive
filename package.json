@@ -1,6 +1,6 @@
 {
   "name": "@jsiebern/bs-devextreme-reactive",
-  "version": "0.0.21",
+  "version": "1.2.0-beta.3",
   "description": "This library provides Reason bindings for devextreme-reactive.",
   "keywords": [
     "bucklescript",
@@ -17,14 +17,17 @@
     "build": "npm link bs-platform; bsb -make-world"
   },
   "devDependencies": {},
+  "peerDependencies": {
+    "@devexpress/dx-react-core": "~1.2.0-beta.3",
+    "@devexpress/dx-react-grid": "~1.2.0-beta.3",
+    "@devexpress/dx-react-grid-bootstrap3": "~1.2.0-beta.3",
+    "@devexpress/dx-react-grid-bootstrap4": "~1.2.0-beta.3",
+    "@devexpress/dx-react-grid-material-ui": "~1.2.0-beta.3",
+    "@material-ui/icons": "~1.0.0-beta.43",
+    "material-ui": "~1.0.0-beta.43",
+    "reason-react": "~0.4.0"
+  },
   "dependencies": {
-    "@devexpress/dx-react-core": "^1.1.0",
-    "@devexpress/dx-react-grid": "^1.1.0",
-    "@devexpress/dx-react-grid-bootstrap3": "^1.1.0",
-    "@devexpress/dx-react-grid-bootstrap4": "^1.1.0",
-    "@devexpress/dx-react-grid-material-ui": "^1.1.0",
-    "material-ui": "^1.0.0-beta.38",
-    "material-ui-icons": "^1.0.0-beta.36",
-    "reason-react": "^0.3.1"
+
   }
 }
