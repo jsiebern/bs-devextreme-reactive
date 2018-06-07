@@ -16,9 +16,9 @@ let unwrapValue =
   | `ObjectGeneric(og) => toJsUnsafe(og)
   | `Array(ag) => toJsUnsafe(ag)
   | `Any(an) => toJsUnsafe(an)
-  | `Object(_) => assert false
-  | `Enum(_) => assert false
-  | `EnumArray(_) => assert false;
+  | `Object(_) => assert(false)
+  | `Enum(_) => assert(false)
+  | `EnumArray(_) => assert(false);
 
 module ColumnChooser = {
   module Messages = {
@@ -132,6 +132,7 @@ module CustomGrouping = {
       unwrappedMap;
     };
   };
+
   [@bs.obj]
   external makeProps :
     (
@@ -382,6 +383,7 @@ module EditingState = {
       unwrappedMap;
     };
   };
+
   [@bs.obj]
   external makeProps :
     (
@@ -597,6 +599,7 @@ module FilteringState = {
       unwrappedMap;
     };
   };
+
   [@bs.obj]
   external makeProps :
     (
@@ -682,6 +685,7 @@ module Grid = {
       unwrappedMap;
     };
   };
+
   [@bs.obj]
   external makeProps :
     (
@@ -759,6 +763,7 @@ module GroupPanelLayout = {
       unwrappedMap;
     };
   };
+
   [@bs.obj]
   external makeProps :
     (
@@ -813,6 +818,7 @@ module GroupPanelLayout = {
 module GroupingPanel = {
   [@bs.deriving jsConverter]
   type sortingDirection = [ | [@bs.as "asc"] `Asc | [@bs.as "desc"] `Desc];
+
   [@bs.deriving jsConverter]
   type direction_enum = [ | [@bs.as "asc"] `Asc | [@bs.as "desc"] `Desc];
   module Messages = {
@@ -953,6 +959,7 @@ module GroupingState = {
       unwrappedMap;
     };
   };
+
   [@bs.obj]
   external makeProps :
     (
@@ -1051,6 +1058,7 @@ module IntegratedFiltering = {
       unwrappedMap;
     };
   };
+
   [@bs.obj]
   external makeProps :
     (
@@ -1125,6 +1133,7 @@ module IntegratedGrouping = {
       unwrappedMap;
     };
   };
+
   [@bs.obj]
   external makeProps :
     (
@@ -1194,6 +1203,7 @@ module IntegratedSorting = {
       unwrappedMap;
     };
   };
+
   [@bs.obj]
   external makeProps :
     (
@@ -1269,6 +1279,7 @@ module PagingPanel = {
       | None => None
       };
   };
+
   [@bs.obj]
   external makeProps :
     (
@@ -1611,6 +1622,7 @@ module SortingState = {
       unwrappedMap;
     };
   };
+
   [@bs.obj]
   external makeProps :
     (
@@ -1897,6 +1909,7 @@ module TableColumnResizing = {
       unwrappedMap;
     };
   };
+
   [@bs.obj]
   external makeProps :
     (
@@ -1985,6 +1998,7 @@ module TableColumnVisibility = {
       unwrappedMap;
     };
   };
+
   [@bs.obj]
   external makeProps :
     (
@@ -2047,6 +2061,7 @@ module TableEditColumn = {
     | [@bs.as "right"] `Right
     | [@bs.as "center"] `Center
   ];
+
   [@bs.deriving jsConverter]
   type id = [
     | [@bs.as "add"] `Add
@@ -2103,6 +2118,7 @@ module TableEditColumn = {
       | None => None
       };
   };
+
   [@bs.obj]
   external makeProps :
     (
@@ -2551,6 +2567,7 @@ module TableGroupRow = {
       unwrappedMap;
     };
   };
+
   [@bs.obj]
   external makeProps :
     (
@@ -2710,8 +2727,10 @@ module TableHeaderRow = {
     | [@bs.as "right"] `Right
     | [@bs.as "center"] `Center
   ];
+
   [@bs.deriving jsConverter]
   type sortingDirection = [ | [@bs.as "asc"] `Asc | [@bs.as "desc"] `Desc];
+
   [@bs.deriving jsConverter]
   type direction_enum = [ | [@bs.as "asc"] `Asc | [@bs.as "desc"] `Desc];
   module Messages = {
@@ -3287,6 +3306,10 @@ module Table = {
       | None => None
       };
   };
+
+  [@bs.deriving abstract]
+  type messages = {noData: string};
+
   [@bs.obj]
   external makeProps :
     (

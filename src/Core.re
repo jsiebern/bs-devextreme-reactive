@@ -16,9 +16,9 @@ let unwrapValue =
   | `ObjectGeneric(og) => toJsUnsafe(og)
   | `Array(ag) => toJsUnsafe(ag)
   | `Any(an) => toJsUnsafe(an)
-  | `Object(_) => assert false
-  | `Enum(_) => assert false
-  | `EnumArray(_) => assert false;
+  | `Object(_) => assert(false)
+  | `Enum(_) => assert(false)
+  | `EnumArray(_) => assert(false);
 
 module Action = {
   [@bs.obj]
@@ -184,6 +184,7 @@ module Plugin = {
       unwrappedMap;
     };
   };
+
   [@bs.obj]
   external makeProps :
     (~name: string=?, ~dependencies: array(Dependencies.t)=?, unit) => _ =
