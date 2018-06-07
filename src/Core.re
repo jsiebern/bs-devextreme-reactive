@@ -22,10 +22,10 @@ let unwrapValue =
 
 module Action = {
   [@bs.obj]
-  external makeProps : (~name: string, ~action: 'any_rra1, unit) => _ = "";
+  external makeProps : (~name: string, ~action: 'any_rm4x, unit) => _ = "";
   [@bs.module "@devexpress/dx-react-core"]
   external reactClass : ReasonReact.reactClass = "Action";
-  let make = (~name: string, ~action: 'any_rwrb => unit, children) =>
+  let make = (~name: string, ~action: 'any_rncl => unit, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props=makeProps(~name, ~action, ()),
@@ -51,7 +51,7 @@ module DragSource = {
   [@bs.obj]
   external makeProps :
     (
-      ~payload: 'any_rs9y,
+      ~payload: 'any_r5bq,
       ~onStart: 'genericCallback=?,
       ~onUpdate: 'genericCallback=?,
       ~onEnd: 'genericCallback=?,
@@ -63,7 +63,7 @@ module DragSource = {
   external reactClass : ReasonReact.reactClass = "DragSource";
   let make =
       (
-        ~payload: 'any_rs9y,
+        ~payload: 'any_r5bq,
         ~onStart: option('genericCallback)=?,
         ~onUpdate: option('genericCallback)=?,
         ~onEnd: option('genericCallback)=?,
@@ -135,15 +135,15 @@ module DropTarget = {
 module Getter = {
   [@bs.obj]
   external makeProps :
-    (~name: string, ~value: 'any_rhq7=?, ~computed: 'any_rs2r=?, unit) => _ =
+    (~name: string, ~value: 'any_ry3b=?, ~computed: 'any_rziw=?, unit) => _ =
     "";
   [@bs.module "@devexpress/dx-react-core"]
   external reactClass : ReasonReact.reactClass = "Getter";
   let make =
       (
         ~name: string,
-        ~value: option('any_rhq7)=?,
-        ~computed: option(Js.t({..}) => 'any_rz3n)=?,
+        ~value: option('any_ry3b)=?,
+        ~computed: option(Js.t({..}) => 'any_rn7w)=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -162,37 +162,38 @@ module PluginHost = {
 };
 
 module Plugin = {
-  type typeDependencies;
-  [@bs.obj]
-  external makeDependencies :
-    (~name: string=?, ~optional: bool=?, unit) => typeDependencies =
-    "";
-  [@bs.get_index]
-  external getFromDependencies : (typeDependencies, string) => 'a = "";
-  let convertDependencies = (madeObj: typeDependencies) => {
-    let returnObj: Js.Dict.t(string) = Js.Dict.empty();
-    Js.Dict.set(
-      returnObj,
-      "name",
-      toJsUnsafe(getFromDependencies(madeObj, "name")),
-    );
-    Js.Dict.set(
-      returnObj,
-      "optional",
-      toJsUnsafe(getFromDependencies(madeObj, "optional")),
-    );
-    returnObj;
+  module Dependencies = {
+    [@bs.deriving abstract]
+    type t = {
+      [@bs.optional]
+      name: string,
+      [@bs.optional]
+      optional: bool,
+    };
+    let make = t;
+    let unwrap = (obj: t) => {
+      let unwrappedMap = Js.Dict.empty();
+      switch (obj |. name) {
+      | Some(v) => unwrappedMap |. Js.Dict.set("name", v |. toJsUnsafe)
+      | None => ()
+      };
+      switch (obj |. optional) {
+      | Some(v) => unwrappedMap |. Js.Dict.set("optional", v |. toJsUnsafe)
+      | None => ()
+      };
+      unwrappedMap;
+    };
   };
   [@bs.obj]
   external makeProps :
-    (~name: string=?, ~dependencies: array(typeDependencies)=?, unit) => _ =
+    (~name: string=?, ~dependencies: array(Dependencies.t)=?, unit) => _ =
     "";
   [@bs.module "@devexpress/dx-react-core"]
   external reactClass : ReasonReact.reactClass = "Plugin";
   let make =
       (
         ~name: option(string)=?,
-        ~dependencies: option(array(typeDependencies))=?,
+        ~dependencies: option(array(Dependencies.t))=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -204,7 +205,7 @@ module Plugin = {
             Js.Option.map(
               (. v) =>
                 Js.Array.map(
-                  item => toJsUnsafe(convertDependencies(item)),
+                  item => toJsUnsafe(Dependencies.unwrap(item)),
                   v,
                 ),
               dependencies,
@@ -260,7 +261,7 @@ module Template = {
     (
       ~position: 'genericCallback=?,
       ~name: string,
-      ~predicate: 'any_re9e=?,
+      ~predicate: 'any_rutf=?,
       unit
     ) =>
     _ =
