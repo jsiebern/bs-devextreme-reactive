@@ -16,16 +16,16 @@ let unwrapValue =
   | `ObjectGeneric(og) => toJsUnsafe(og)
   | `Array(ag) => toJsUnsafe(ag)
   | `Any(an) => toJsUnsafe(an)
-  | `Object(_) => assert(false)
-  | `Enum(_) => assert(false)
-  | `EnumArray(_) => assert(false);
+  | `Object(_) => assert false
+  | `Enum(_) => assert false
+  | `EnumArray(_) => assert false;
 
 module Action = {
   [@bs.obj]
-  external makeProps : (~name: string, ~action: 'any_rm4x, unit) => _ = "";
+  external makeProps : (~name: string, ~action: 'any_rkax, unit) => _ = "";
   [@bs.module "@devexpress/dx-react-core"]
   external reactClass : ReasonReact.reactClass = "Action";
-  let make = (~name: string, ~action: 'any_rncl => unit, children) =>
+  let make = (~name: string, ~action: 'any_r0ia => unit, children) =>
     ReasonReact.wrapJsForReason(
       ~reactClass,
       ~props=makeProps(~name, ~action, ()),
@@ -51,7 +51,7 @@ module DragSource = {
   [@bs.obj]
   external makeProps :
     (
-      ~payload: 'any_r5bq,
+      ~payload: 'any_rr9i,
       ~onStart: 'genericCallback=?,
       ~onUpdate: 'genericCallback=?,
       ~onEnd: 'genericCallback=?,
@@ -63,7 +63,7 @@ module DragSource = {
   external reactClass : ReasonReact.reactClass = "DragSource";
   let make =
       (
-        ~payload: 'any_r5bq,
+        ~payload: 'any_rr9i,
         ~onStart: option('genericCallback)=?,
         ~onUpdate: option('genericCallback)=?,
         ~onEnd: option('genericCallback)=?,
@@ -135,15 +135,15 @@ module DropTarget = {
 module Getter = {
   [@bs.obj]
   external makeProps :
-    (~name: string, ~value: 'any_ry3b=?, ~computed: 'any_rziw=?, unit) => _ =
+    (~name: string, ~value: 'any_reuu=?, ~computed: 'any_rvyi=?, unit) => _ =
     "";
   [@bs.module "@devexpress/dx-react-core"]
   external reactClass : ReasonReact.reactClass = "Getter";
   let make =
       (
         ~name: string,
-        ~value: option('any_ry3b)=?,
-        ~computed: option(Js.t({..}) => 'any_rn7w)=?,
+        ~value: option('any_reuu)=?,
+        ~computed: option(Js.t({..}) => 'any_rido)=?,
         children,
       ) =>
     ReasonReact.wrapJsForReason(
@@ -184,7 +184,6 @@ module Plugin = {
       unwrappedMap;
     };
   };
-
   [@bs.obj]
   external makeProps :
     (~name: string=?, ~dependencies: array(Dependencies.t)=?, unit) => _ =
@@ -262,7 +261,7 @@ module Template = {
     (
       ~position: 'genericCallback=?,
       ~name: string,
-      ~predicate: 'any_rutf=?,
+      ~predicate: 'any_rcno=?,
       unit
     ) =>
     _ =
